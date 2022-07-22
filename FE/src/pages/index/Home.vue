@@ -31,8 +31,9 @@
                     </div>
                 </div>
                 <div class="header__content text-center">
-                    <h1 class="h1 text-center">Thiết lập<span class="text--orange"> Tài khoản miễn phí </span>ngay</h1>
-                    <vs-button class="w-64 h-16" color="linear-gradient(180deg,#facc4f,#d3a25b 50%,#67491d)"
+                    <h2 class="h1 text-center">Kỷ nguyên mới giao dịch điện tử </h2>
+                    <p class="h11 text-center">Didi là một nền tảng giao dịch sáng tạo cung cấp cho các nhà giao dịch trải nghiệm đặc biệt với các tính năng tiên tiến. </p>
+                    <vs-button class="w-64 h-16" color="#34d1d6"
                         @click="LoginUrl">Bắt đầu giao dịch</vs-button>
                     <!--<div class="forms forms_1 forms--dark text-center">
                         <vs-button class="h-16 text-2xl" color="rgb(62, 201, 214)" type="filled" @click="LoginUrl">Bắt đầu giao dịch</vs-button>
@@ -556,8 +557,7 @@ export default {
 .trade {
     position: relative;
     z-index: 1;
-    -webkit-box-shadow: 0 -16px 56px -8px #111;
-    box-shadow: 0 -16px 56px -8px #111;
+    /* //anh vừa xóa nó đi xong màu nền á  */
 }
 
 .header__btn .button {
@@ -1165,9 +1165,10 @@ export default {
         padding: 40px 0 80px;
     }
     .h1 {
+        font-family: "Public Sans", sans-serif;
         font-weight: 700;
-        font-size: 56px;
-        line-height: 64px;
+        font-size: 40px;
+        line-height: 47px;
     }
     .section-padding {
         padding: 80px 0;
@@ -1246,8 +1247,11 @@ export default {
         /*padding-bottom: 244px;*/
     }
     .h1 {
-        font-size: 72px;
-        line-height: 80px;
+        color: #fff;
+        font-size: 40px;
+        line-height: 47px;
+        font-weight: 700;
+        text-align: center;
     }
     .trade__list {
         max-width: 1120px;
@@ -1285,6 +1289,14 @@ export default {
         zoom: 0.7;
     }
 }
+.h11{
+    color: hsla(0,0%,100%,.5);
+    font-size: 16px;
+    max-width: 555px;
+    margin: 0 auto 35px;
+    text-align: center;
+}
+
 
 
 </style>
