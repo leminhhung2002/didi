@@ -65,7 +65,7 @@ export default {
   },
   computed: {
     navbarColor() {
-      return this.$store.state.theme === "dark" ? "#02142b" : "#fff"
+      return this.$store.state.theme === "dark" ? "#090f3e" : "#fff"
     }
   },
   methods: {

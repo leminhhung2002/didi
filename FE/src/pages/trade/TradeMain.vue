@@ -262,7 +262,7 @@ export default {
 
     },
     isThemeDark(val) {
-      const color = this.navbarColor == "#fff" && val ? "#02142b" : "#fff"
+      const color = this.navbarColor == "#fff" && val ? "#090f3e" : "#fff"
       this.updateNavbarColor(color)
     },
     "$store.state.mainLayoutType"(val) {
@@ -312,7 +312,7 @@ export default {
         this.routeTitle = title
       },
       updateNavbar(val) {
-        if (val == "static") this.updateNavbarColor(this.isThemeDark ? "#02142b" : "#fff")
+        if (val == "static") this.updateNavbarColor(this.isThemeDark ? "#090f3e" : "#fff")
         this.navbarType = val
       },
       updateNavbarColor(val) {
@@ -376,7 +376,7 @@ export default {
       this.khoiTaoPrintUser();
       
 
-      const color = this.navbarColor == "#fff" && this.isThemeDark ? "#02142b" : this.navbarColor
+      const color = this.navbarColor == "#fff" && this.isThemeDark ? "#090f3e" : this.navbarColor
       this.updateNavbarColor(color)
       this.setNavMenuVisibility(this.$store.state.mainLayoutType)
       // Dynamic Watchers for tour
@@ -465,12 +465,12 @@ button.vs-tabs--btn{
 }
 
 .vs-tabs-primary .con-ul-tabs .activeChild button, .vs-tabs-primary .con-ul-tabs button:not(:disabled):hover{
-  color: #e2e2e2 !important;
+  color:#34d1d6!important;
 }
 
 .vs-tabs-primary .con-ul-tabs .line-vs-tabs{
   /*background: linear-gradient(30deg,rgb(121, 124, 140),rgba(var(--vs-primary),.5))!important;*/
-  background: linear-gradient(30deg,rgb(121, 124, 140),rgb(250 40 67))!important;
+  background: linear-gradient(30deg,#34d1d6,#34d1d6)!important;
 }
 
 .v-nav-menu .scroll-area-v-nav-menu > .vs-sidebar--item{

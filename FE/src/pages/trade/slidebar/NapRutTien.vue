@@ -55,7 +55,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="itemSelectUnit VND" @click="selectTypePay('VND')" v-if="getSetSys.isActiveWalletVND">
+                                    <div class="itemSelectUnit VND" @click="selectTypePay('VND')" v-if="getSetSys.isActiveWalletVND && typePay == 'VND'">
                                         <div class="icon VND"></div>
                                         <div class="info">
                                             <div class="amount w-full">
@@ -63,7 +63,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="itemSelectUnit USDT" @click="selectTypePay('USDT')" v-if="getSetSys.isActiveWalletUSDT">
+                                    <div class="itemSelectUnit USDT" @click="selectTypePay('USDT')" v-if="getSetSys.isActiveWalletUSDT && typePay == 'USDT'">
                                         <div class="icon USDT"></div>
                                         <div class="info">
                                             <div class="amount w-full">
@@ -346,8 +346,15 @@ import getSetSys  from '@/services/settingSys.json'
 import { isMobile } from 'mobile-device-detect'
 import QRCode from 'qrcode'
 import makeid from '../../../utils/makeid';
+import SETTINGS from '../../../../settings.json'
 
 export default {
+    props: {
+        typePay: {
+            type: String,
+            default: '',
+        }
+    },
     data(){
         return {
             pop2FAokPay: !this.DISABLE_2FA,
@@ -399,6 +406,8 @@ export default {
             isMobile,
 
             DISABLE_2FA: false,
+
+            connectionSetting: null,
         }
     },
     methods: {
@@ -424,17 +433,17 @@ export default {
                 b: this.bank,
             }
 
-            AuthenticationService.depositVND(obj)
-            .then((res) => {
-                let d = res.data
+            // AuthenticationService.depositVND(obj)
+            // .then((res) => {
+            //     let d = res.data
 
-                if(d.success == 3 || d.success == 4){
-                    localStorage.removeItem('token')
-                    this.$router.push('/login').catch(() => {})
-                    return
-                }
+            //     if(d.success == 3 || d.success == 4){
+            //         localStorage.removeItem('token')
+            //         this.$router.push('/login').catch(() => {})
+            //         return
+            //     }
 
-                if(d.success){
+            //     if(d.success){
                     this.isNap = false;
                     return this.$vs.notify({
                         text: 'Gửi yêu cầu nạp tiền thành công!',
@@ -443,8 +452,8 @@ export default {
                         color: 'success',
                         position:'top-right',
                     });
-                }
-            })
+                // }
+            // })
         },
         
         DepositPaypal(){
@@ -1215,7 +1224,21 @@ export default {
         },
     },
     mounted() {
-       
+        if (this.typePay) {
+            console.log(this.typePay)
+            this.selectTypePay(this.typePay)
+        }
+        this.connectionSetting = new WebSocket(SETTINGS.BASE_URL_SOCKET_SYS)
+        this.connectionSetting.onmessage = function(event) {
+
+            let data = JSON.parse(event.data)
+            let dl = data.data
+
+            if (dl) {
+                getSetSys.isActiveWalletVND = dl.isActiveWalletVND
+            }
+
+        }
     },
     created() {
         
@@ -1389,7 +1412,7 @@ export default {
 }
 
 .address .greenButton {
-    background: #23c15f !important;
+    background: #34D1D6 !important;
 }
 
 .boxAddress .address button {

@@ -26,7 +26,7 @@
             </div>
             <div class="nav-item btn-nav-item-new bg-primary">
                 <router-link to="/trading" class="nav-link cursor-pointer">
-                    <feather-icon style="color: #fff;" icon="SettingsIcon" svgClasses="w-5 h-5" class="block text-center"/>
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="19.776" height="20.801" viewBox="0 0 19.776 20.801" class="non-active"><g id="bracket-arrow" transform="translate(0 21.189) rotate(-90)"><g id="Path_30752" data-name="Path 30752" transform="translate(2.447 0)" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5,13.385l3.226-3.5L9.5,6.391V1.5l7.743,8.388L9.5,18.276Z" stroke="none"></path><path d="M 9.499995231628418 18.2755241394043 L 17.24255561828613 9.887763977050781 L 9.499995231628418 1.500003933906555 L 9.499995231628418 6.390714168548584 L 12.72606468200684 9.887763977050781 L 9.499995231628418 13.38481426239014 L 9.499995231628418 18.2755241394043 M 9.499653816223145 19.77558326721191 C 9.316328048706055 19.77558326721191 9.131294250488281 19.74194717407227 8.953784942626953 19.67254447937012 C 8.378564834594727 19.44763374328613 7.99999475479126 18.89314460754395 7.99999475479126 18.2755241394043 L 7.99999475479126 13.38481426239014 C 7.99999475479126 13.00788402557373 8.141904830932617 12.64477443695068 8.397475242614746 12.3677339553833 L 10.68527698516846 9.887763977050781 L 8.397475242614746 7.407793998718262 C 8.141904830932617 7.130753993988037 7.99999475479126 6.767643928527832 7.99999475479126 6.390714168548584 L 7.99999475479126 1.500003933906555 C 7.99999475479126 0.8823840022087097 8.378564834594727 0.3278939723968506 8.953784942626953 0.1029839739203453 C 9.131258964538574 0.03359496966004372 9.316363334655762 -5.543701263377443e-05 9.499653816223145 -5.543701263377443e-05 C 9.910433769226074 -5.543701263377443e-05 10.31252574920654 0.1687753796577454 10.60219478607178 0.4825839698314667 L 18.34475517272949 8.870344161987305 C 18.87515449523926 9.444933891296387 18.87515449523926 10.33059406280518 18.34475517272949 10.90518379211426 L 10.60219478607178 19.29294395446777 C 10.31255149841309 19.60672569274902 9.910395622253418 19.77558326721191 9.499653816223145 19.77558326721191 Z" stroke="none" fill="#fff" class="fill-color"></path></g><g id="Path_30753" data-name="Path 30753" transform="translate(1.389 1.685)" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6.687,14.905.5,8.2,6.687,1.5V5.408L4.109,8.2,6.687,11Z" stroke="none"></path><path d="M 6.686956405639648 14.90506172180176 L 6.686956405639648 10.99697208404541 L 4.10905647277832 8.202531814575195 L 6.686956405639648 5.408092021942139 L 6.686956405639648 1.500001788139343 L 0.4999963045120239 8.202531814575195 L 6.686956405639648 14.90506172180176 M 6.687297821044922 16.40512084960938 C 6.276517391204834 16.40512084960938 5.874425888061523 16.23628997802734 5.584756374359131 15.92248153686523 L -0.6022037267684937 9.219951629638672 C -1.132603645324707 8.64536190032959 -1.132603645324707 7.759701728820801 -0.6022037267684937 7.185111999511719 L 5.584756374359131 0.4825818240642548 C 5.87440013885498 0.1688009202480316 6.276555061340332 -5.759948908234946e-05 6.687297821044922 -5.759948908234946e-05 C 6.870623588562012 -5.759948908234946e-05 7.055656909942627 0.03357908129692078 7.233166217803955 0.1029818132519722 C 7.808386325836182 0.3278918266296387 8.186956405639648 0.882381796836853 8.186956405639648 1.500001788139343 L 8.186956405639648 5.408092021942139 C 8.186956405639648 5.785021781921387 8.045045852661133 6.148131847381592 7.78947639465332 6.425171852111816 L 6.149843215942383 8.202531814575195 L 7.78947639465332 9.979891777038574 C 8.045045852661133 10.25693225860596 8.186956405639648 10.620041847229 8.186956405639648 10.99697208404541 L 8.186956405639648 14.90506172180176 C 8.186956405639648 15.52268218994141 7.808386325836182 16.07717132568359 7.233166217803955 16.30208206176758 C 7.055692195892334 16.3714714050293 6.870587825775146 16.40512084960938 6.687297821044922 16.40512084960938 Z" stroke="none" fill="#fff" class="fill-color"></path></g></g></svg></span>
                     <span class="textLink">{{ $t('Trade') || 'Trade' }}</span>
                 </router-link>
             </div>
@@ -138,7 +138,7 @@
 
 
             <div class="nav-item btn-nav-item-new">
-                <a href.prevent @click="popupActiveCaiDat = true" class="nav-link cursor-pointer">
+                <a href.prevent @click="onClickSetup()" class="nav-link cursor-pointer">
                 <span class="mb-2">
                     <feather-icon style="color: #fff;" icon="SettingsIcon" svgClasses="w-5 h-5" class="block text-center h-5 "/></span>
                     <span class="textLink">{{ $t('Settings') || 'Settings' }}</span>
@@ -154,7 +154,7 @@
             </div> -->
 
         </div>
-        <div class="bottomSidebar btn-nav-item-new">
+        <div class="bottomSidebar btn-nav-item-new hidden lg:block">
             <div class=" nav-item">
                 <a href.prevent @click="logOut()" class="nav-link cursor-pointer">
                 <span class="mb-2"><feather-icon style="color: #fff;" icon="LogOutIcon" svgClasses="w-5 h-5" class="block text-center h-5"/></span>
@@ -163,7 +163,7 @@
             </div>
         </div>
 
-        <vs-popup class="setting" title="Cài Đặt" :active.sync="popupActiveCaiDat">
+        <vs-popup class="setting popup-setting" title="Cài Đặt" :active.sync="popupActiveCaiDat">
             <div class="wrap flex flex-col relative">
             <div class="line mb-3 line-language-pc line-pc flex align-center">
                 <div class="type flex-1 flex align-center">
@@ -198,6 +198,14 @@
                         <vs-switch color="success" style="border: 1px solid #4e4e4e;min-width: 60px;" v-model="switchAmThanh" @change="OnOffSound"/>
                         <span class="white uppercase">On</span>
                     </div>
+                </div>
+            </div>
+            <div class="bottomSidebar btn-nav-item-new block lg:hidden">
+                <div class="nav-item">
+                    <a href.prevent @click="logOut()" class="nav-link cursor-pointer items-center">
+                    <span class="mr-0"><feather-icon style="color: #fff;" icon="LogOutIcon" svgClasses="w-5 h-5" class="block text-center h-5"/></span>
+                        <span class="textLink">{{ $t('Logout') || 'Logout' }}</span>
+                    </a>
                 </div>
             </div>
             </div>
@@ -394,219 +402,225 @@
 
         <ho-so-user-info :isSidebarActive="addNewDataSidebar" @closeSidebar="toggleDataSidebar" :data="sidebarData" />
         <!-- <his-order-bet :isSidebarActive="addSidebarHisOrder" @closeSidebar="toggleDataSidebarHisOrder"/> -->
-
     </div>
     </div>
 </div>
 </template>
 
 <script>
-
-import getData from '@/pages/trade/navbar/components/data.json';
-import HoSoUserInfo from '@/pages/trade/slidebar/HoSoUser';
-import I18n  from "./i18n";
+import getData from "@/pages/trade/navbar/components/data.json";
+import HoSoUserInfo from "@/pages/trade/slidebar/HoSoUser";
+import I18n from "./i18n";
 // import HisOrderBet from '@/pages/trade/slidebar/HisOrderBet.vue';
-import { isMobile } from 'mobile-device-detect'
+import { isMobile } from "mobile-device-detect";
+import VuePerfectScrollbar from "vue-perfect-scrollbar";
 export default {
-    components: {
-        I18n,
-        HoSoUserInfo,
-        // HisOrderBet
-    },
-    data() {
-        return {
-            blObj: getData,
-            switchAmThanh: true,
-            popupActiveCaiDat: false,
-            addSidebarHisOrder: false,
-            // Data Sidebar
-            addNewDataSidebar: false,
-            sidebarData: {},
-            isMobile,
-            user: {},
-        }
-    },
-    
-    methods: {
-        logOut(){
-            localStorage.removeItem('tokenUser');
-            localStorage.removeItem('INFO');
-            // xóa notice = 0
-            getData.Notify = 0;
-            localStorage.removeItem('stateOpen');
-            // This is just for demo Purpose. If user clicks on logout -> redirect
-            //this.$router.push('/login').catch(() => {})   
-            window.location.href = window.location.origin + '/login'
-        },
+  components: {
+    I18n,
+    HoSoUserInfo,
+    VuePerfectScrollbar,
+    // HisOrderBet
+  },
+  data() {
+    return {
+      blObj: getData,
+      switchAmThanh: true,
+      popupActiveCaiDat: false,
+      addSidebarHisOrder: false,
+      // Data Sidebar
+      addNewDataSidebar: false,
+      sidebarData: {},
+      isMobile,
+      user: {},
+      isSidebarActiveLocal: false,
+    };
+  },
 
-        viewHoSo(){ 
-            this.toggleDataSidebar(true)
-        },
-
-        toggleDataSidebar(val=false) {
-            this.addNewDataSidebar = val
-        },
-
-        OnOffSound(){
-            if(this.switchAmThanh){
-                localStorage.setItem('SOUND', true);
-            }else{
-                localStorage.setItem('SOUND', false);
-            }
-        },
-
-        viewHisOrder(){ 
-            this.toggleDataSidebarHisOrder(true)
-        },
-
-        toggleDataSidebarHisOrder(val=false) {
-            this.addSidebarHisOrder = val
-        },
-        quickDeposit() {
-            this.$store.commit('SET_QUICK_DEPOSIT', true)
-            this.onCloseMenu()
-        },
-        onCloseMenu() {
-            this.$emit('onCloseMenu')
-        },
-
+  methods: {
+    logOut() {
+      localStorage.removeItem("tokenUser");
+      localStorage.removeItem("INFO");
+      // xóa notice = 0
+      getData.Notify = 0;
+      localStorage.removeItem("stateOpen");
+      // This is just for demo Purpose. If user clicks on logout -> redirect
+      //this.$router.push('/login').catch(() => {})
+      window.location.href = window.location.origin + "/login";
     },
 
-    mounted() {
-        let info = localStorage.getItem('INFO')
-        if (info) {
-            this.user = JSON.parse(info)
-        }
+    viewHoSo() {
+      // this.toggleDataSidebar(true)
+      this.$router.push("/user/profile").catch(() => {});
     },
-    
-}
+
+    toggleDataSidebar(val = false) {
+      this.addNewDataSidebar = val;
+    },
+
+    OnOffSound() {
+      if (this.switchAmThanh) {
+        localStorage.setItem("SOUND", true);
+      } else {
+        localStorage.setItem("SOUND", false);
+      }
+    },
+
+    viewHisOrder() {
+      this.toggleDataSidebarHisOrder(true);
+    },
+
+    toggleDataSidebarHisOrder(val = false) {
+      this.addSidebarHisOrder = val;
+    },
+    quickDeposit() {
+      this.$store.commit("SET_QUICK_DEPOSIT", true);
+      this.onCloseMenu();
+    },
+    onCloseMenu() {
+      this.$emit("onCloseMenu");
+    },
+    onClickSetup() {
+      // if (isMobile) {
+      //     this.isSidebarActiveLocal = true
+      //     return
+      // }
+      this.popupActiveCaiDat = true;
+      this.onCloseMenu();
+    },
+  },
+
+  mounted() {
+    let info = localStorage.getItem("INFO");
+    if (info) {
+      this.user = JSON.parse(info);
+    }
+  },
+};
 </script>
 
 <style scoped>
-.noticeCmdN{
-    position: absolute;
-    margin-left: 15px;
-    margin-top: -5px;
-    border-radius: 50%;
-    background: #e22a67;
-    width: 20px;
-    height: 20px;
-    color: #fff;
+.noticeCmdN {
+  position: absolute;
+  margin-left: 15px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: #e22a67;
+  width: 20px;
+  height: 20px;
+  color: #fff;
 }
 
 @media screen and (min-width: 600px) {
-    .mobileA{
-        display: none;
-    }
+  .mobileA {
+    display: none;
+  }
 }
 
-
-.nav-item .nav-link{
-    color: rgba(255, 255, 255, 0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-transform: capitalize;
+.nav-item .nav-link {
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-transform: capitalize;
 }
 
 .nav-item .championship {
-    position: relative;
+  position: relative;
 }
 
 .nav-item .icon-live {
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
 }
-.v-nav-menu .feather-icon{
-      margin-right: 0;
+.v-nav-menu .feather-icon {
+  margin-right: 0;
 }
 
-.v-nav-menu a{
+.v-nav-menu a {
   padding: 10px;
 }
-.v-nav-menu .router-link-active .textLink{
+.v-nav-menu .router-link-active .textLink {
   background: transparent;
   box-shadow: none;
   /* color: #34D1D6!important; */
 }
-.v-nav-menu .router-link-active .fill-color{
-    fill: #34D1D6
+.v-nav-menu .router-link-active .fill-color {
+  fill: #34d1d6;
 }
-.v-nav-menu .router-link-active .stroke-color{
-    stroke: #34D1D6;
+.v-nav-menu .router-link-active .stroke-color {
+  stroke: #34d1d6;
 }
-#leftSidebar{
-    position: fixed !important;
-    height: 100vh;
-    width: 300px;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    z-index: 99999999;
+#leftSidebar {
+  position: fixed !important;
+  height: 100vh;
+  width: 300px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  z-index: 99999999;
 }
 @media screen and (min-width: 1200px) {
-    #leftSidebar{
-        width: 105px;
-        height: calc(100vh - 80px);
-    }
+  #leftSidebar {
+    width: 105px;
+    height: calc(100vh - 80px);
+  }
 }
 
-#leftSidebar .nav-link{
-    position: relative;
+#leftSidebar .nav-link {
+  position: relative;
 }
 #leftSidebar .nav-link.new:before {
-    position: absolute;
-    top: 0;
-    right: 15px;
-    background: url('~@/assets/images/sky/icon-new.svg');
-    display: block;
-    overflow: hidden;
-    width: 25px;
-    height: 21px;
-    content: "";
-    background-size: 100% 100%;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  background: url("~@/assets/images/sky/icon-new.svg");
+  display: block;
+  overflow: hidden;
+  width: 25px;
+  height: 21px;
+  content: "";
+  background-size: 100% 100%;
 }
 .iconLive {
-    position: absolute;
-    top: 18px;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    -ms-flex-item-align: center;
-    align-self: center;
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  -ms-flex-item-align: center;
+  align-self: center;
 }
 
 .textLink {
-    color: #fff;
-    text-transform: unset;
-    word-wrap: break-word;      /* IE 5.5-7 */
-    white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
-    white-space: pre-wrap;      /* current browsers */
-    text-align: center;
+  color: #fff;
+  text-transform: unset;
+  word-wrap: break-word; /* IE 5.5-7 */
+  white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+  white-space: pre-wrap; /* current browsers */
+  text-align: center;
 }
-.topSidebar{
-    height: calc(100% - 65px);
-    overflow-y: auto;
-    width: 300px;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: flex-start;
-    z-index: 99;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    box-sizing: border-box;
+.topSidebar {
+  height: calc(100% - 65px);
+  overflow-y: auto;
+  width: 300px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: flex-start;
+  z-index: 99;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
 }
 @media screen and (min-width: 1200px) {
-    .topSidebar{
-        width: 105px;
-    }
+  .topSidebar {
+    width: 105px;
+  }
 }
 </style>
 <style>
-
-.v-nav-menu a span{
+.v-nav-menu a span {
   font-size: 13px !important;
 }
 
@@ -615,97 +629,160 @@ export default {
 }
 
 .btn-link {
-    display: none;
-    flex-direction: column;
-    background-color: transparent;
-    font-size: 13px !important;
-    white-space: pre-wrap;
-    text-transform: unset;
-    word-wrap: break-word;
-    font-family: "Sarabun", Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    width: 100%;
-    background-color: #34D1D6 !important;
-    border-radius: 5px;
+  display: none;
+  flex-direction: column;
+  background-color: transparent;
+  font-size: 13px !important;
+  white-space: pre-wrap;
+  text-transform: unset;
+  word-wrap: break-word;
+  font-family: "Sarabun", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  width: 100%;
+  background-color: #34d1d6 !important;
+  border-radius: 5px;
 }
 .btn-link .vs-button-text {
-    margin: auto;
+  margin: auto;
 }
 @media only screen and (max-width: 1200px) {
-    .btn-link {
-        display: flex;
-    }
+  .btn-link {
+    display: flex;
+  }
 }
 .logo {
-    height: 7rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+  height: 7rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .logo .vx-logo {
-    display: block;
+  display: block;
 }
 .img-logo {
-    width: 191px;
-    height: 64px;
+  width: 191px;
+  height: 64px;
 }
 .text-section {
-    font-size: 20px;
-    color: #fff;
-    margin: 0.5rem 0;
+  font-size: 20px;
+  color: #fff;
+  margin: 0.5rem 0;
 }
 .btn-nav-item-new {
-    display: flex;
-    font-size: 13px !important;
-    white-space: pre-wrap;
-    text-transform: unset;
-    word-wrap: break-word;
-    font-family: "Sarabun", Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    width: 100%;
-    margin-bottom: 1rem;
-    border-radius: 5px  ;
-    background-color: #2f3342 !important;
-    cursor: pointer;
+  display: flex;
+  font-size: 13px !important;
+  white-space: pre-wrap;
+  text-transform: unset;
+  word-wrap: break-word;
+  font-family: "Sarabun", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  background-color: #2f3342 !important;
+  cursor: pointer;
 }
 .btn-nav-item-new.bg-primary {
-    background-color: #34D1D6 !important;
+  background-color: #34d1d6 !important;
 }
 
 .btn-nav-item-new .nav-link {
-    flex-direction: row !important;
-    height: 45px !important;
-    box-sizing: border-box;
+  flex-direction: row !important;
+  height: 45px !important;
+  box-sizing: border-box;
 }
 .btn-nav-item-new .nav-link span:first-child {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 .nav-link-new .new {
-    width: 100%;
-    justify-content: flex-start !important;
+  width: 100%;
+  justify-content: flex-start !important;
 }
 .nav-link-new .new::before {
-    top: 10px !important;
+  top: 10px !important;
 }
 .topSidebarDesktop {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
-.topSidebarDesktop .nav-link{
-    align-items: center;
+.topSidebarDesktop .nav-link {
+  align-items: center;
 }
-.topSidebarDesktop .router-link-active .textLink{
-    color: #34D1D6!important;
+.topSidebarDesktop .router-link-active .textLink {
+  color: #34d1d6 !important;
 }
 
-.topSidebarDesktop .textLink{
-    text-align: center;
-    font-weight: 400;
-    font-size: 16px !important;
+.topSidebarDesktop .textLink {
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px !important;
 }
 .btn-logout {
-    border-top: 1px solid rgba(255, 255, 255, 0.22);
-    padding-top: 0.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  padding-top: 0.2rem;
+}
+
+@media (max-width: 768px) {
+  .popup-setting .vs-popup {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    margin: 0 !important;
+    width: unset !important;
+    max-width: unset !important;
+    max-height: unset !important;
+  }
+
+  .theme-dark .popup-setting.con-vs-popup .vs-popup .vs-popup--header {
+    background: transparent !important;
+  }
+
+  .theme-dark .popup-setting.con-vs-popup .vs-popup .vs-popup--header h3 {
+    font-size: 24px;
+    font-weight: 900;
+  }
+
+  .popup-setting .vs-popup--close {
+    transform: translate(-10px, 2px);
+    font-size: 2rem;
+  }
+
+  .popup-setting .vs-popup--content {
+    padding: 0;
+    margin-top: 1rem;
+  }
+
+  .popup-setting .vs-popup--content .line-language-pc {
+    padding: 1rem;
+    background: #1d233b !important;
+  }
+
+  .popup-setting .vs-popup--content .line-language-pc .hidden {
+    display: block !important;
+  }
+
+  .popup-setting .vs-popup--content .line {
+    padding: 1rem;
+    background: #1d233b !important;
+  }
+
+  .popup-setting .vs-popup--content,
+  .popup-setting .wrap {
+    height: 100%;
+    max-height: unset !important;
+  }
+
+  .popup-setting .bottomSidebar {
+    position: absolute;
+    z-index: 1;
+    content: "";
+    width: 100%;
+    height: 45px;
+    bottom: 60px;
+    left: 0;
+  }
 }
 </style>

@@ -347,7 +347,7 @@ export default {
 }
 
 .transactionBox .totalWin.winUp {
-    color: #31BAA0;
+    color: #34D1D6;
 }
 
 .transactionBox .totalWin.winDown {

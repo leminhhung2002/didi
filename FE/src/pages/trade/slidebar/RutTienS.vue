@@ -408,7 +408,7 @@ export default {
 
 <style lang="scss" scoped>
 .title{
-  background: #02142b; 
+  background: #090f3e; 
   left: 20px;
   top: -8px;
   padding: 0 5px;
@@ -473,7 +473,7 @@ export default {
 }
 
 .vx-card{
-    background-color: #02142b;
+    background-color: #090f3e;
     border: 1px solid #b3b3b3;
 }
 </style>

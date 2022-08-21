@@ -291,7 +291,7 @@ export default{
 
       // Below is data which is common in any item
       // Algolia's dataSet don't provide this kind of data. So, here's dummy data for demo
-      available_item_colors: ["#7367F0", "#28C76F", "#EA5455", "#FF9F43", "#1E1E1E"],
+      available_item_colors: ["#7367F0", "#31baa0", "#EA5455", "#FF9F43", "#1E1E1E"],
       opt_color: "#7367F0",
       is_hearted: false,
 

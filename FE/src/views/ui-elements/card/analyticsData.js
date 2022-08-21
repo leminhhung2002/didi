@@ -106,7 +106,7 @@ export default {
             xaxis: {
                 type: 'numeric',
             },
-            colors: ['#28C76F'],
+            colors: ['#31baa0'],
             fill: {
                 type: 'gradient',
                 gradient: {

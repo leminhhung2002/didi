@@ -84,7 +84,7 @@ export default {
                 }, {
                     data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],
                     label: "Asia",
-                    borderColor: "#28C76F",
+                    borderColor: "#31baa0",
                     fill: false
                 }, {
                     data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],

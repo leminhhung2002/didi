@@ -60,7 +60,7 @@
         <!--<div class="shadow-bottom" v-show="showShadowBottom" /> -->
 
 
-        <list-menu-handmade/>
+        <list-menu-handmade @onCloseMenu="onCloseMenu"/>
 
         
         <!-- /Menu Items -->
@@ -292,6 +292,9 @@ export default {
       this.reduceButton = val
       this.setVerticalNavMenuWidth()
     },
+    onCloseMenu() {
+      this.$store.commit('TOGGLE_IS_VERTICAL_NAV_MENU_ACTIVE', false)
+    }
   },
   mounted() {
     this.setVerticalNavMenuWidth()
@@ -304,9 +307,14 @@ export default {
 <style lang="scss">
 @import "@/assets/scss/vuexy/components/verticalNavMenu.scss";
 .vs-sidebar{
-  background: #02142b !important;
-  background-color: #02142b !important;
-  max-width: 105px;
+  background: #090f3e !important;
+  background-color: #090f3e !important;
+  max-width: 300px;
+}
+@media screen and (min-width: 1200px){
+  .vs-sidebar{
+    max-width: 105px;
+  }
 }
 /*#content-area.content-area-reduced{
   margin-left: 95Px;
@@ -316,10 +324,6 @@ export default {
 }
 </style>
 <style>
-
-.vs-sidebar.vs-sidebar-parent{
-  top: 76px !important;
-}
 @media screen and (max-width: 768px){
   .vx-logo{
     display: none;
@@ -327,7 +331,16 @@ export default {
     width: 0px;*/
   }
   .vs-sidebar.vs-sidebar-parent{
-    top: 60px !important;
+    top: 0 !important;
   }
+}
+@media screen and (min-width: 1200px) {
+    .vs-sidebar-parent {
+        top: 56px !important;
+    }
+
+    .show-notice .vs-sidebar-parent {
+        top: 18px !important;
+    }
 }
 </style>

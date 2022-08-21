@@ -65,7 +65,7 @@
             class="mt-5 w-full" />
 
         <!-- WALLET -->
-        <!-- <vs-input disabled  
+        <vs-input disabled  
             label="Ví VNĐ"
             icon-pack="feather"
             icon="icon-dollar-sign"
@@ -104,7 +104,7 @@
             v-validate="{ required: true, regex: /\d+(\.\d+)?$/ }"
             name="item-wallet_usdt" />
         <span class="text-danger text-sm" v-show="errors.has('item-wallet_usdt')">{{ errors.first('item-wallet_usdt') }}</span>
-        -->
+       
 
         <!-- CATEGORY -->
         <template v-if="superUser == 1">

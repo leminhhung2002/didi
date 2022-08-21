@@ -213,15 +213,15 @@
       <div class="ft-1">
         <div class="block">
           <p class="des1">
-            WINBO.TRADE is authorised by the WINBO.TRADE TRADING LIMITED and regulated
-            under the Judicial Authority of Portugal. WINBO.TRADE TRADING LIMITED
+            Diniti is authorised by the Diniti TRADING LIMITED and regulated
+            under the Judicial Authority of Portugal. Diniti TRADING LIMITED
             (125,268) is incorporated in Portugal and has our registered office
             at: R. Prof. Lima Basto 1099-023, Lisbon, Portugal.
           </p>
           <br />
           <p style="text-align: center" class="des2">
-            © WINBO.TRADE 2020 All rights reserved. ‘WINBO.TRADE’ is a trademark of the
-            WINBO.TRADE TRADING LIMITED.
+            © Diniti {{new Date().getFullYear()}} All rights reserved. ’Diniti’ is a trademark of the
+            Diniti TRADING LIMITED.
           </p>
         </div>
       </div>
@@ -287,7 +287,7 @@
         padding: 0.8rem 0.75rem;
         border-radius: 0.25rem;
         color: #fff;
-        background: #171b2c;
+        background: #090f3e;
         display: flex;
         align-content: center;
       }

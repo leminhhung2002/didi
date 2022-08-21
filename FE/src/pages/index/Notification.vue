@@ -138,7 +138,7 @@
   color: #fff;
   line-height: 1;
   padding-bottom: 18px;
-  border-bottom: 1px solid #011022;
+  border-bottom: 1px solid #02102C;
   margin-bottom: 0;
 }
 

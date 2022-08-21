@@ -955,7 +955,7 @@ export default {
 <style scoped>
 
 .boxFix .boxAuthentication .bgPrimary {
-    background-color: #171b2c;
+    background-color: #090f3e;
 }
 
 .boxFix .boxAuthentication .contentAuthentication {
@@ -1043,7 +1043,7 @@ export default {
 }
 
 .logoLogin {
-    background-image: url('~@/assets/images/logo/logo.png');
+    background-image: url('~@/assets/images/logo/logo.57b09ac4.svg');
     display: block;
     height: 40px;
     width: 170px;
@@ -1068,7 +1068,7 @@ export default {
 }
 
 a{
-    color: #fa2843 !important;
+    color: #34D1D6 !important;
 }
 
 </style>

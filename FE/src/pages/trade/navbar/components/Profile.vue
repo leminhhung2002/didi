@@ -5,43 +5,68 @@
       <p class="font-semibold">{{ activeUserInfo.displayName }}</p>
      <small>Available</small>
     </div> -->
-    <div class="con-img ml-3 mr-3 info-money" style="border-radius: 3px;">
-      <vs-dropdown vs-custom-content vs-trigger-click>
-        <div class="text-left cursor-pointer" style="font-weight: bold">
-          <p class="text-sm nowrap" style="color: #c1c1c1;"> {{ isAcc ? 'Tài khoản Thực' : 'Tài khoản Demo' }} </p>
-          <div class="wrapper-money">
-            <div class="text-money">$ {{ isAcc ? this.formatPrice(blObj.blLive, 2) : this.formatPrice(blObj.blDemo, 2) }}</div>
-            <span class="float-right arrow-down-custom">
-              <feather-icon icon="ChevronDownIcon" svgClasses="w-6 h-6 text-down" />
+    <div >
+      <div data-v-3bbff296 class="nav-streak" >
+        <a data-v-3bbff296 href="/streak-challenge" class="nav-link p-0 btn-streak-challenge">
+          <div data-v-3bbff296 class="nav-streak-rewards">
+            <span data-v-3bbff296 class="nav-streak-rewards-label d-block">
+                                                  Prize Pool
+                                  </span>
+            <span data-v-3bbff296 class="nav-streak-rewards-value d-block">
+                                                      $37.69K
             </span>
           </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="con-img ml-3 mr-3 info-money cursor-pointer" style="border-radius: 3px;">
+      <vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer">
+        <div class="flex cursor-pointer">
+          <div class="flex flex-col items-start">
+            <p class="nowrap" style="color: #c1c1c1;font-size: 8px;font-weight: 400;margin-bottom: 0.25rem;color: #fff;font-family: 'Roboto', sans-serif;"> {{ isAcc ? 'Tài khoản Thực' : 'Tài khoản Demo' }} </p>
+            <div class="text-money">$ {{ isAcc ? this.formatPrice(blObj.blLive, 2) : this.formatPrice(blObj.blDemo, 2) }}</div>
+          </div>
+          <feather-icon icon="ChevronDownIcon" svgClasses="w-6 h-6 text-down ml-2" />
         </div>
-        <vs-dropdown-menu class="dropdown-account" style="width: 160px;">
-          <div class="accLive mb-3">
-            <span style="font-size: 12px;color: #d6d6d6;">Tài khoản Thực</span>
-            <div class="balance cursor-pointer" @click="changeAccount(1)">
-              <span style="color: #e8e8e8;font-weight: bold;font-size: 16px;">$ {{ formatPrice(blObj.blLive, 2) }}</span>
-              <span class="reloadBalance absolute" style="right: 10px;z-index: 99999;" @click="clickShowPopTrans()">
-                <feather-icon icon="LinkIcon" class="cursor-pointer w-4"></feather-icon>
-              </span>
+        <vs-dropdown-menu class="dropdown-account" style="width: 200px;">
+          <div class="accLive flex mb-3">
+            <label class="radio-check">
+              <input type="radio" :checked="isAcc" name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <div>
+              <span style="font-size: 12px;color: #d6d6d6;">Tài khoản Thực</span>
+              <div class="balance cursor-pointer" @click="changeAccount(1)">
+                <span style="color: #e8e8e8;font-weight: bold;font-size: 16px;">$ {{ formatPrice(blObj.blLive, 2) }}</span>
+                <span class="reloadBalance absolute" style="right: 10px;z-index: 99999;" @click="clickShowPopTrans()">
+                  <span class="material-icons-outlined cursor-pointer">sync_alt</span>
+                </span>
+              </div>
             </div>
           </div>
           <hr style="border-color: #b4c2d2;">
-          <div class="accDemo mt-3">
-            <span style="font-size: 12px;color: #d6d6d6;">Tài khoản Demo</span>
-            <div class="balance cursor-pointer" @click="changeAccount(0)">
-              <span style="color: #e8e8e8;font-weight: bold;font-size: 16px;">$ {{ formatPrice(blObj.blDemo, 2) }}</span>
-              <span class="reloadBalance absolute z-10" style="right: 10px">
-                <feather-icon icon="RefreshCwIcon" @click.stop="reloadBalanceDemo()" class="cursor-pointer w-4"></feather-icon>
-              </span>
+          <div class="accDemo flex mt-3">
+            <label class="radio-check">
+              <input type="radio" :checked="!isAcc" name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <div>
+              <span style="font-size: 12px;color: #d6d6d6;">Tài khoản Demo </span>
+              <div class="balance cursor-pointer" @click="changeAccount(0)">
+                <span style="color: #e8e8e8;font-weight: bold;font-size: 16px;">$ {{ formatPrice(blObj.blDemo, 2) }}</span>
+                <span class="absolute z-10" style="right: 10px">
+                  <feather-icon icon="RotateCwIcon" svgClasses="w-5 h-5" class="block text-center h-5" @click.stop="reloadBalanceDemo()"/>
+                </span>
+              </div>
             </div>
           </div>
         </vs-dropdown-menu>
       </vs-dropdown>
       
     </div>
-    <div class="con-img ml-3 mr-3">
-      <vs-button class="add-money" icon-pack="feather" icon="icon-dollar-sign" type="relief" @click="popupActiveNapNhanh=true,getBalanceWalletClick()">
+    <div class="con-img ml-3 mr-3 add-money-fix">
+      <vs-button class="add-money" type="relief" @click="popupActiveNapNhanh=true,getBalanceWalletClick()">
         <span class="nowrap">{{ isMobile ? 'Nạp' : 'Nạp nhanh' }}</span>
       </vs-button>
       <!-- <vs-button type="line" icon-pack="feather" :color="colorNT" icon="icon-dollar-sign" @click.stop="viewNapTien()">Nạp nhanh</vs-button> -->
@@ -96,7 +121,7 @@
       <feather-icon icon="UserIcon" svgClasses="w-5 h-5" class="block text-center h-5"/>
       <span>Hồ Sơ</span>
     </div>
-    <div class="con-img ml-3 mr-3 text-center relative cursor-pointer mTT">
+    <div class="con-img text-center relative cursor-pointer mTT show-notice" :class="{'icon-notification' : isMobile}">
         <notification-drop-down />
     </div>
     <!-- <div class="con-img ml-3 mr-3 cursor-pointer mhelper" @click.stop="viewHelp()">
@@ -117,7 +142,7 @@
       <span>Trợ giúp</span>
     </div> -->
 
-    <div v-if="$route.name.trim() === 'client-index'" class="con-img ml-3 mr-3 cursor-pointer mdot" @click.stop="toggleDataSidebarHisOrder()">
+    <div v-if="$route.name.trim() === 'client-index'" class="con-img ml-3 mr-3 cursor-pointer mdot hidden xl:block" @click.stop="toggleDataSidebarHisOrder()">
       <div class="btn-dot">
         <feather-icon v-if="!$store.state.isOpenSideBar" icon="MoreVerticalIcon" svgClasses="w-5 h-5" class="block text-center h-5"/>
         <feather-icon v-else icon="ListIcon" svgClasses="w-5 h-5" class="block text-center h-5"/>
@@ -278,7 +303,7 @@ export default {
     I18n,
     HoSoUserInfo,
     NotificationDropDown,
-    HisOrderBet
+    HisOrderBet,
   },
   data() {
     return {
@@ -324,6 +349,9 @@ export default {
     activeUserInfo() {
       return getData.displayName
     },
+    isOpenQuickDeposit() {
+      return this.$store.state.isOpenQuickDeposit
+    },
   },
   watch: {
     number() {
@@ -342,6 +370,19 @@ export default {
           clearInterval(this.counter);
         }
       }.bind(this), 20);
+    },
+
+    isOpenQuickDeposit() {
+      if (this.isOpenQuickDeposit) {
+        this.popupActiveNapNhanh=true
+        this.getBalanceWalletClick()
+      }
+    },
+
+    popupActiveNapNhanh() {
+      if (!this.popupActiveNapNhanh) {
+        this.$store.commit('SET_QUICK_DEPOSIT', false)
+      }
     }
   },
   methods: {
@@ -554,69 +595,65 @@ export default {
         this.ttNhan = this.formatPrice(amount, 2)
     },
 
-
     submitDeposit(){
+      let amount = this.ttNhan
 
-         
-          let amount = this.ttNhan
+      amount = this.replaceAll(amount.toString(), ',', '')
+      amount = this.replaceAll(amount.toString(), '-', '')
 
-          amount = this.replaceAll(amount.toString(), ',', '')
-          amount = this.replaceAll(amount.toString(), '-', '')
+      if(amount <= 0){
+          return this.$vs.notify({
+              text:'Giá trị không hợp lệ',
+              color:'danger',
+              position:'top-right',
+              iconPack: 'feather',
+              icon:'icon-x-circle'})
+      }
 
-          if(amount <= 0){
-              return this.$vs.notify({
-                  text:'Giá trị không hợp lệ',
+      if(amount < 11){
+        return this.$vs.notify({
+              text:'Số tiền tối thiểu không đủ',
+              color:'danger',
+              position:'top-right',
+              iconPack: 'feather',
+              icon:'icon-x-circle'})
+      }
+
+      
+      let obj = {
+          money: amount,
+          id: getData.uidLive
+      }
+
+      AuthenticationService.depositWallet(obj)
+      .then((res) => {
+          if(res.data.success == 1){
+              getData.balance -= amount;
+              getData.blLive += amount;
+
+              this.$vs.notify({
+                  text: 'Nạp tiền thành công.',
+                  iconPack: 'feather',
+                  icon: 'icon-check',
+                  color: 'success'
+              })
+          }else if(res.data.success == 3){
+            this.$vs.notify({
+                  text: 'Số dư bạn không đủ.',
                   color:'danger',
                   position:'top-right',
                   iconPack: 'feather',
-                  icon:'icon-x-circle'})
+                  icon:'icon-x-circle'
+              })
+          }else{
+            this.$vs.notify({
+              text:'Giá trị không hợp lệ',
+              color:'danger',
+              position:'top-right',
+              iconPack: 'feather',
+              icon:'icon-x-circle'})
           }
-
-          if(amount < 11){
-            return this.$vs.notify({
-                  text:'Số tiền tối thiểu không đủ',
-                  color:'danger',
-                  position:'top-right',
-                  iconPack: 'feather',
-                  icon:'icon-x-circle'})
-          }
-
-          
-          let obj = {
-              money: amount,
-              id: getData.uidLive
-          }
-
-          AuthenticationService.depositWallet(obj)
-          .then((res) => {
-              if(res.data.success == 1){
-                  getData.balance -= amount;
-                  getData.blLive += amount;
-
-                  this.$vs.notify({
-                      text: 'Nạp tiền thành công.',
-                      iconPack: 'feather',
-                      icon: 'icon-check',
-                      color: 'success'
-                  })
-              }else if(res.data.success == 3){
-                this.$vs.notify({
-                      text: 'Số dư bạn không đủ.',
-                      color:'danger',
-                      position:'top-right',
-                      iconPack: 'feather',
-                      icon:'icon-x-circle'
-                  })
-              }else{
-                this.$vs.notify({
-                  text:'Giá trị không hợp lệ',
-                  color:'danger',
-                  position:'top-right',
-                  iconPack: 'feather',
-                  icon:'icon-x-circle'})
-              }
-          })
-
+      })
     },  
 
     allEnterWallet(){
@@ -660,7 +697,6 @@ export default {
     },
 
     changeAccount(val){
-
       if(val){
         localStorage.setItem('BO_BALANCE_TYPE', 'LIVE')
         this.isAcc = getData.isAccount = 1;
@@ -668,7 +704,6 @@ export default {
         localStorage.setItem('BO_BALANCE_TYPE', 'DEMO')
         this.isAcc = getData.isAccount = 0;
       }
-
     },
 
     replaceAll(str, find, replace) {
@@ -689,7 +724,8 @@ export default {
     },
 
     viewHoSo(){ 
-      this.toggleDataSidebar(true)
+      // this.toggleDataSidebar(true)
+      this.$router.push('/user/profile').catch(() => {})
     },
 
     viewHelp() {
@@ -789,7 +825,7 @@ export default {
 
 .reloadBalance {
     right: 10px;
-    background: #fa2843;
+    background: #34d1d6;
     width: 40px;
     height: 25px;
     text-align: center;
@@ -808,7 +844,7 @@ export default {
     left: 0;
     right: 0;
     top: -60px;
-    background: #02142b;
+    background: #090f3e;
     z-index: 999;
     transform: translate3d(0, 0, 0);
     transition-property: -webkit-transform visibility;
@@ -832,7 +868,7 @@ export default {
     border-radius: 50%;
     font-weight: bold;
     font-size: 9px;
-    border: 2px solid #02142b;
+    border: 2px solid #090f3e;
     padding: 0 2px;
 }
 
@@ -936,7 +972,7 @@ export default {
       position: fixed;
       right: 0;
       top: 60px;
-      background: #02142b;
+      background: #090f3e;
       padding: 0px 10px;
       border-bottom-left-radius: 20px;
       display: block;
@@ -950,17 +986,10 @@ export default {
  
 }
 
-@media screen and (max-width: 425px) {
-    .text-acc{
-      zoom: .9;
-    }
-}
-
-
 @media screen and (max-width: 376px) {
-  .text-acc{
+  /* .text-acc{
       zoom: .8;
-    }
+    } */
   .text-down{
     width: 1.2rem !important;
     height: 1.2rem !important;
@@ -1038,7 +1067,10 @@ export default {
 }
 
 .navbar-floating .vx-navbar{
-  padding: .3rem 1rem;
+  padding: 0.5rem 15px;
+  height: 56px;
+  display: flex;
+  align-items: center;
 }
 
 .setting .vs-popup{
@@ -1077,12 +1109,13 @@ export default {
   white-space: nowrap;
 }
 .text-money {
-  margin-top: 5px;
-  font-size: 1.2rem;
   cursor: pointer;
-}
-.arrow-down-custom {
-  margin-top: 7px;
+  font-size: 15px;
+  line-height: 16px;
+  font-weight: 900;
+  color: #fff;
+  margin-top: 3px;
+  font-family: Sarabun, sans-serif;
 }
 
 .btn-dot {
@@ -1114,7 +1147,7 @@ export default {
     border-radius: 50%;
     font-weight: bold;
     font-size: 9px;
-    border: 2px solid #02142b;
+    border: 2px solid #090f3e;
     padding: 0 2px;
 }
 
@@ -1125,9 +1158,14 @@ export default {
         font-size: 12px;
     }
 }
+@media screen and (max-width: 1200px) {
+    .add-money, .add-money-fix {
+      display: none;
+    }
+}
 .add-money {
   box-shadow: inset 0 -3px 0 0 rgb(0 0 0 / 20%);
-  background: linear-gradient(180deg,#facc4f,#d3a25b 50%,#67491d)!important;
+  background: linear-gradient(180deg,#34d1d6,#34d1d6 50%,#34d1d6)!important;
   color: #fff!important;
   font-weight: 600;
   border-radius: 10px;
@@ -1135,6 +1173,158 @@ export default {
 
 .info-money {
   background-color: #2f3342!important;
-  padding: 4px 7px;
+  height: 41px;
+  width: 123px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-streak-rewards {
+    height: 40px;
+    padding: 5px 10px 4px 24px;
+    border: 1px solid #592ae6;
+    border-radius: 6px;
+    background: linear-gradient(133deg,#020024,#290c7e 0,#592ae6);
+    text-align: left;
+    position: relative;
+}
+#rightNav a span {
+    white-space: nowrap;
+}
+
+.nav-streak-rewards-label {
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 3px;
+    font-family: Lato;
+}
+.d-block {
+    display: block!important;
+}
+#rightNav a span {
+    white-space: nowrap;
+}
+
+.nav-streak-rewards-value {
+    font-size: 15px;
+    line-height: 16px;
+    font-weight: 900;
+    color: #f7a62f;
+}
+.nav-streak-rewards:before {
+    content: "";
+    display: block;
+    width: 44px;
+    height: 44px;
+    background: url(data:image/png;base64,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) 0 0 no-repeat;
+    position: absolute;
+    left: -22px;
+    right: -5px;
+    top: -4px ;
+}
+.accLive {
+  display: flex;
+}
+/* The radio-check */
+.radio-check {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radio-check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #2f3342;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radio-check:hover input ~ .checkmark {
+  background-color: #2f3342;
+}
+
+/* When the radio button is checked, add a blue background */
+.radio-check input:checked ~ .checkmark {
+  background-color: #2f3342;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio-check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio-check .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #34d1d6;
+}
+
+@media (max-width: 1200px) {
+    .icon-notification {
+        padding: 8px 7px 4px 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1d233b;
+        border-radius: 4px;
+    }
+}
+
+.show-notice .vs-sidebar--background{
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.show-notice .vs-content-sidebar {
+  position: relative;
+}
+
+.show-notice .vs-sidebar-parent {
+    max-width: unset !important;
+    left: unset !important;
+    right: 0;
+    height: unset !important;
+    width: 400px;
+    top: 18px;
+}
+
+.btn-streak-challenge {
+  width: 95px;
+  display: block;
+  margin-left: 1rem;
 }
 </style>
