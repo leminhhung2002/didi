@@ -6,32 +6,28 @@
                         <div class="container h-full">
                             <div class="vx-row h-full items-center">
                                 <div class="vx-col lg:w-6/12">
-                                    <p class="text-3xl font-bold white line-height-normal mb-4">Bạn cần trở thành Thành viên VIP để nhận hoa hồng VIP và hoa hồng giao dịch</p>
-                                    <vs-button color="success" type="filled" @click="popupBuyThamGiaVip=true">Mua ngay</vs-button>
+                                    <p data-v-e34fad3a class="font-30 font-18m font-weight-700 color-white line-height-normal mb-4">Bạn cần trở thành Thành viên VIP để nhận hoa hồng VIP và hoa hồng giao dịch</p>
+                                    <vs-button data-v-e34fad3a class="btn button primary btn-green btn-large" color="success" type="filled" @click="popupBuyThamGiaVip=true">Mua ngay $100</vs-button>
                                 </div>
                                 <div class="vx-col w-full lg:w-6/12">
                                     <div class="affiliateInfo bgSecondary borderPrimary">
                                         <div class="linkGroup">
                                             <div class="vx-col flex-col justify-center">
-                                                <div class="w-full">
+                                                <div class="MGT w-full">
                                                     <p class="color-gray colorSecondary mb-2 label">Link Đăng ký</p>
                                                     <div class="groupButton flex mb-4 relative">
-                                                        <div class="leftControl">
-                                                            <input type="text" v-model="linkDk" readonly="readonly" disabled class="form-control w-full text-base pl-2">
-                                                        </div>
-                                                        <div class="rightControl">
-                                                            <button class="btn button primary cursor-pointer" v-clipboard:copy="linkDk" @click="saoChep">Sao chép</button>
+                                                        <div class="copy-btn">
+                                                            <input type="text" v-model="linkDk" readonly="readonly" disabled class="form-control text-base pl-2 copy-btn-input">
+                                                            <button class="cursor-pointer copy-btn-button" v-clipboard:copy="linkDk" @click="saoChep">Sao chép</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="w-6/12">
+                                                <div class="MGT w-1/2">
                                                     <p class="color-light-gray mb-2 colorSecondary label">Mã giới thiệu</p>
                                                     <div class="groupButton flex mb-4 relative">
-                                                        <div class="leftControl">
-                                                            <input type="text" v-model="codeGioiThieu" readonly="readonly" disabled class="form-control w-full text-base pl-2">
-                                                        </div>
-                                                        <div class="rightControl">
-                                                            <button class="btn button primary cursor-pointer" v-clipboard:copy="codeGioiThieu" @click="saoChep">Sao chép</button>
+                                                        <div class="copy-btn-2">
+                                                            <input type="text" v-model="codeGioiThieu" readonly="readonly" disabled class="form-control text-base pl-2 copy-btn-input-2">
+                                                            <button class="cursor-pointer copy-btn-button-2" v-clipboard:copy="codeGioiThieu" @click="saoChep">Sao chép</button>
                                                         </div>
                                                     </div>   
                                                 </div>
@@ -55,7 +51,7 @@
                                         <div>
                                             <div class="textContent">
                                                 <p class="mb-1 title">Mời bạn</p>
-                                                <p class="color-white-50 mb-0 des">Mời bạn bè đăng ký Winbo.trade qua liên kết</p>
+                                                <p class="color-white-50 mb-0 des">Mời bạn bè đăng ký Diniti qua liên kết</p>
                                             </div>
                                         </div>
                                     </div>
@@ -105,7 +101,7 @@
                             <div class="imgShake mb-3"></div>
                             <div class="textContent mb-3 colorSecondary">Bạn cần thanh toán $100 để mua Quyền Đại lý. Bạn muốn tiếp tục?</div>
                             <div class="checkbox flex items-center justify-center mb-3">
-                                <vs-checkbox color="success" v-model="dongYMua" @click="isDongY=!isDongY"></vs-checkbox>
+                                <vs-checkbox color="success" v-model="isDongY1" @click="isDongY1=!isDongY1"></vs-checkbox>
                                 <span for="customControlInline" class="accept">
                                     Tôi xác nhận và đồng ý
                                     <a target="_blank" href="/faqs" class="term">
@@ -113,7 +109,16 @@
                                     </a>
                                 </span>
                             </div>
-                            <vs-button class="w-full" color="warning" type="filled" :disabled="!isDongY" @click="OkBuyVip">Xác nhận</vs-button>
+                            <div class="checkbox flex items-center justify-center mb-3">
+                                <vs-checkbox color="success" v-model="isDongY2" @click="isDongY2=!isDongY2"></vs-checkbox>
+                                <span for="customControlInline" class="accept">
+                                    Tôi xác nhận và đồng ý
+                                    <a target="_blank" href="https://didi.azureedge.net/Agency_Obligations/wl_Agency Obligations_vi.pdf" class="term">
+                                        Nghĩa Vụ Thành Viên VIP
+                                    </a>
+                                </span>
+                            </div>
+                            <vs-button class="w-full" color="warning" :disabled="!checkPreBuy()" type="filled" @click="OkBuyVip">Xác nhận</vs-button>
                         </div>
                     </div>
                 </vs-popup>
@@ -144,7 +149,7 @@
                         </vs-tab>
                     </vs-tabs>
                     <div class="m-6">
-                        <div class="gobal" :class="{'block': showGobal }">
+                        <div class="gobal fix-gobal" :class="{'block': showGobal }">
                             <div class="container" :class="{'ld-loading': loading}">
                             <div class="loading">
                                 <div class="loading__ring">
@@ -174,9 +179,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="body">
-                                                    <h5 class="nextRankCondition colorSecondary text-center mb-3">Điều kiện Cấp bậc</h5>
+                                                    <h5 class="nextRankCondition colorSecondary text-left mb-3">Điều kiện Cấp bậc</h5>
                                                     <div class="vx-row">
-                                                        <div class="vx-col w-2/3">
+                                                        <div class="vx-col w-full">
                                                             <p class="text-base white-50 mb-2 name">F1 tổng (Tuần này)</p>
                                                             <p class="text-xl font-size-18 colorPrimary m-0 value">
                                                                 <span class="colorSecondary">{{ hhMeF1isWeek }} / </span>
@@ -189,7 +194,7 @@
                                                                 <span class="colorGray" v-if="vip_lv >= 7">64,000</span>
                                                             </p>
                                                         </div>
-                                                        <div class="vx-col w-1/3">
+                                                        <div class="vx-col w-full">
                                                             <p class="text-base white-50 mb-2 name">F1 Đại lý</p>
                                                             <p class="text-xl font-size-18 m-0 value">
                                                                 <span class="colorSecondary">{{ totalDlisMe }} / </span>
@@ -210,9 +215,9 @@
                                             <div class="affiliateInfo bgSecondary borderSecondary">
                                                 <div class="referralSponsor">
                                                     <p class="mb-0">
-                                                        <span class="text-xs colorSecondary mb-2">Người giới thiệu</span>
+                                                        <span class="text-xs colorSecondary mb-2 mr-2">Người giới thiệu</span>
+                                                        <span class="text-2xl colorSecondary mb-2 value">{{ f1cuaminh != '' ? f1cuaminh : '-----' }}</span>
                                                     </p>
-                                                    <p><span class="text-2xl colorSecondary mb-2 value">{{ f1cuaminh != '' ? f1cuaminh : '-----' }}</span></p>
                                                 </div>
                                                 <hr class="borderBottom">
                                                 <div class="linkGroup m-0">
@@ -241,11 +246,11 @@
                                             <div class="affiliateInfo bgSecondary borderSecondary">
                                                 <p class="text-base font-bold white mb-3 affiliateInfo-title" style="vertical-align: middle;">
                                                     <svg id="unlink" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 15.885 15.885" class="mr-1">
-                                                        <path id="Path_34840" data-name="Path 34840" d="M13.347,9.63l1.191-1.191a4.961,4.961,0,0,0,1.39-3.475,4.657,4.657,0,0,0-1.489-3.475A4.657,4.657,0,0,0,10.964,0,4.657,4.657,0,0,0,7.489,1.489L6.3,2.581a.96.96,0,0,0,0,1.39.96.96,0,0,0,1.39,0L8.879,2.78a3.063,3.063,0,0,1,4.17,0,3.08,3.08,0,0,1,.894,2.184,2.7,2.7,0,0,1-.894,2.085L11.957,8.24a.96.96,0,0,0,0,1.39.96.96,0,0,0,1.39,0Z" transform="translate(-0.043)" fill="#facc4f"></path>
-                                                        <path id="Path_34841" data-name="Path 34841" d="M8.24,11.957,7.049,13.148a3.063,3.063,0,0,1-4.17,0,3.08,3.08,0,0,1-.894-2.184,2.7,2.7,0,0,1,.894-2.085L3.971,7.688a.96.96,0,0,0,0-1.39.96.96,0,0,0-1.39,0L1.489,7.489A4.657,4.657,0,0,0,0,10.964a4.657,4.657,0,0,0,1.489,3.475,4.657,4.657,0,0,0,3.475,1.489,4.657,4.657,0,0,0,3.475-1.489L9.63,13.247a.951.951,0,1,0-1.39-1.291Z" transform="translate(0 -0.043)" fill="#facc4f"></path>
-                                                        <path id="Path_34842" data-name="Path 34842" d="M9.368,5.2,5.2,9.368a.96.96,0,0,0,0,1.39,1.072,1.072,0,0,0,.695.3,1.072,1.072,0,0,0,.695-.3l4.17-4.17A.983.983,0,1,0,9.368,5.2Z" transform="translate(-0.035 -0.035)" fill="#facc4f"></path>
-                                                        <path id="Path_34843" data-name="Path 34843" d="M2.283,3.673a.9.9,0,0,0,.695.3.9.9,0,0,0,.695-.3.96.96,0,0,0,0-1.39L1.688.3A.96.96,0,0,0,.3.3a.96.96,0,0,0,0,1.39Z" transform="translate(0 0)" fill="#facc4f"></path>
-                                                        <path id="Path_34844" data-name="Path 34844" d="M13.688,12.3a.983.983,0,1,0-1.39,1.39l1.986,1.986a.96.96,0,0,0,1.39,0,.96.96,0,0,0,0-1.39Z" transform="translate(-0.087 -0.087)" fill="#facc4f"></path>
+                                                        <path id="Path_34840" data-name="Path 34840" d="M13.347,9.63l1.191-1.191a4.961,4.961,0,0,0,1.39-3.475,4.657,4.657,0,0,0-1.489-3.475A4.657,4.657,0,0,0,10.964,0,4.657,4.657,0,0,0,7.489,1.489L6.3,2.581a.96.96,0,0,0,0,1.39.96.96,0,0,0,1.39,0L8.879,2.78a3.063,3.063,0,0,1,4.17,0,3.08,3.08,0,0,1,.894,2.184,2.7,2.7,0,0,1-.894,2.085L11.957,8.24a.96.96,0,0,0,0,1.39.96.96,0,0,0,1.39,0Z" transform="translate(-0.043)" fill="#34D1D6"></path>
+                                                        <path id="Path_34841" data-name="Path 34841" d="M8.24,11.957,7.049,13.148a3.063,3.063,0,0,1-4.17,0,3.08,3.08,0,0,1-.894-2.184,2.7,2.7,0,0,1,.894-2.085L3.971,7.688a.96.96,0,0,0,0-1.39.96.96,0,0,0-1.39,0L1.489,7.489A4.657,4.657,0,0,0,0,10.964a4.657,4.657,0,0,0,1.489,3.475,4.657,4.657,0,0,0,3.475,1.489,4.657,4.657,0,0,0,3.475-1.489L9.63,13.247a.951.951,0,1,0-1.39-1.291Z" transform="translate(0 -0.043)" fill="#34D1D6"></path>
+                                                        <path id="Path_34842" data-name="Path 34842" d="M9.368,5.2,5.2,9.368a.96.96,0,0,0,0,1.39,1.072,1.072,0,0,0,.695.3,1.072,1.072,0,0,0,.695-.3l4.17-4.17A.983.983,0,1,0,9.368,5.2Z" transform="translate(-0.035 -0.035)" fill="#34D1D6"></path>
+                                                        <path id="Path_34843" data-name="Path 34843" d="M2.283,3.673a.9.9,0,0,0,.695.3.9.9,0,0,0,.695-.3.96.96,0,0,0,0-1.39L1.688.3A.96.96,0,0,0,.3.3a.96.96,0,0,0,0,1.39Z" transform="translate(0 0)" fill="#34D1D6"></path>
+                                                        <path id="Path_34844" data-name="Path 34844" d="M13.688,12.3a.983.983,0,1,0-1.39,1.39l1.986,1.986a.96.96,0,0,0,1.39,0,.96.96,0,0,0,0-1.39Z" transform="translate(-0.087 -0.087)" fill="#34D1D6"></path>
                                                     </svg>
 
                                                     Link Đăng ký
@@ -260,11 +265,11 @@
                                                 </div>
                                                 <p class="text-base font-bold white mb-3 affiliateInfo-title" style="vertical-align: middle;">
                                                     <svg id="unlink" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 15.885 15.885" class="mr-1">
-                                                        <path id="Path_34840" data-name="Path 34840" d="M13.347,9.63l1.191-1.191a4.961,4.961,0,0,0,1.39-3.475,4.657,4.657,0,0,0-1.489-3.475A4.657,4.657,0,0,0,10.964,0,4.657,4.657,0,0,0,7.489,1.489L6.3,2.581a.96.96,0,0,0,0,1.39.96.96,0,0,0,1.39,0L8.879,2.78a3.063,3.063,0,0,1,4.17,0,3.08,3.08,0,0,1,.894,2.184,2.7,2.7,0,0,1-.894,2.085L11.957,8.24a.96.96,0,0,0,0,1.39.96.96,0,0,0,1.39,0Z" transform="translate(-0.043)" fill="#facc4f"></path>
-                                                        <path id="Path_34841" data-name="Path 34841" d="M8.24,11.957,7.049,13.148a3.063,3.063,0,0,1-4.17,0,3.08,3.08,0,0,1-.894-2.184,2.7,2.7,0,0,1,.894-2.085L3.971,7.688a.96.96,0,0,0,0-1.39.96.96,0,0,0-1.39,0L1.489,7.489A4.657,4.657,0,0,0,0,10.964a4.657,4.657,0,0,0,1.489,3.475,4.657,4.657,0,0,0,3.475,1.489,4.657,4.657,0,0,0,3.475-1.489L9.63,13.247a.951.951,0,1,0-1.39-1.291Z" transform="translate(0 -0.043)" fill="#facc4f"></path>
-                                                        <path id="Path_34842" data-name="Path 34842" d="M9.368,5.2,5.2,9.368a.96.96,0,0,0,0,1.39,1.072,1.072,0,0,0,.695.3,1.072,1.072,0,0,0,.695-.3l4.17-4.17A.983.983,0,1,0,9.368,5.2Z" transform="translate(-0.035 -0.035)" fill="#facc4f"></path>
-                                                        <path id="Path_34843" data-name="Path 34843" d="M2.283,3.673a.9.9,0,0,0,.695.3.9.9,0,0,0,.695-.3.96.96,0,0,0,0-1.39L1.688.3A.96.96,0,0,0,.3.3a.96.96,0,0,0,0,1.39Z" transform="translate(0 0)" fill="#facc4f"></path>
-                                                        <path id="Path_34844" data-name="Path 34844" d="M13.688,12.3a.983.983,0,1,0-1.39,1.39l1.986,1.986a.96.96,0,0,0,1.39,0,.96.96,0,0,0,0-1.39Z" transform="translate(-0.087 -0.087)" fill="#facc4f"></path>
+                                                        <path id="Path_34840" data-name="Path 34840" d="M13.347,9.63l1.191-1.191a4.961,4.961,0,0,0,1.39-3.475,4.657,4.657,0,0,0-1.489-3.475A4.657,4.657,0,0,0,10.964,0,4.657,4.657,0,0,0,7.489,1.489L6.3,2.581a.96.96,0,0,0,0,1.39.96.96,0,0,0,1.39,0L8.879,2.78a3.063,3.063,0,0,1,4.17,0,3.08,3.08,0,0,1,.894,2.184,2.7,2.7,0,0,1-.894,2.085L11.957,8.24a.96.96,0,0,0,0,1.39.96.96,0,0,0,1.39,0Z" transform="translate(-0.043)" fill="#34D1D6"></path>
+                                                        <path id="Path_34841" data-name="Path 34841" d="M8.24,11.957,7.049,13.148a3.063,3.063,0,0,1-4.17,0,3.08,3.08,0,0,1-.894-2.184,2.7,2.7,0,0,1,.894-2.085L3.971,7.688a.96.96,0,0,0,0-1.39.96.96,0,0,0-1.39,0L1.489,7.489A4.657,4.657,0,0,0,0,10.964a4.657,4.657,0,0,0,1.489,3.475,4.657,4.657,0,0,0,3.475,1.489,4.657,4.657,0,0,0,3.475-1.489L9.63,13.247a.951.951,0,1,0-1.39-1.291Z" transform="translate(0 -0.043)" fill="#34D1D6"></path>
+                                                        <path id="Path_34842" data-name="Path 34842" d="M9.368,5.2,5.2,9.368a.96.96,0,0,0,0,1.39,1.072,1.072,0,0,0,.695.3,1.072,1.072,0,0,0,.695-.3l4.17-4.17A.983.983,0,1,0,9.368,5.2Z" transform="translate(-0.035 -0.035)" fill="#34D1D6"></path>
+                                                        <path id="Path_34843" data-name="Path 34843" d="M2.283,3.673a.9.9,0,0,0,.695.3.9.9,0,0,0,.695-.3.96.96,0,0,0,0-1.39L1.688.3A.96.96,0,0,0,.3.3a.96.96,0,0,0,0,1.39Z" transform="translate(0 0)" fill="#34D1D6"></path>
+                                                        <path id="Path_34844" data-name="Path 34844" d="M13.688,12.3a.983.983,0,1,0-1.39,1.39l1.986,1.986a.96.96,0,0,0,1.39,0,.96.96,0,0,0,0-1.39Z" transform="translate(-0.087 -0.087)" fill="#34D1D6"></path>
                                                     </svg>
 
                                                     Mã giới thiệu
@@ -331,10 +336,10 @@
                                             <div class="networkVolumeStats bgSecondary borderSecondary">
                                                 <div class="cardHeader flex items-center">
                                                     <svg id="b-chart" xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" class="mr-2">
-                                                        <rect id="Rectangle_4604" data-name="Rectangle 4604" width="24" height="2" transform="translate(0 18)" fill="#facc4f"></rect>
-                                                        <path id="Path_34533" data-name="Path 34533" d="M4,18H6a1,1,0,0,0,1-1V8A1,1,0,0,0,6,7H4A1,1,0,0,0,3,8v9A1,1,0,0,0,4,18Z" transform="translate(0 -2)" fill="#facc4f"></path>
-                                                        <path id="Path_34534" data-name="Path 34534" d="M11,18h2a1,1,0,0,0,1-1V3a1,1,0,0,0-1-1H11a1,1,0,0,0-1,1V17A1,1,0,0,0,11,18Z" transform="translate(0 -2)" fill="#facc4f"></path>
-                                                        <path id="Path_34535" data-name="Path 34535" d="M17,12v5a1,1,0,0,0,1,1h2a1,1,0,0,0,1-1V12a1,1,0,0,0-1-1H18A1,1,0,0,0,17,12Z" transform="translate(0 -2)" fill="#facc4f"></path>
+                                                        <rect id="Rectangle_4604" data-name="Rectangle 4604" width="24" height="2" transform="translate(0 18)" fill="#34D1D6"></rect>
+                                                        <path id="Path_34533" data-name="Path 34533" d="M4,18H6a1,1,0,0,0,1-1V8A1,1,0,0,0,6,7H4A1,1,0,0,0,3,8v9A1,1,0,0,0,4,18Z" transform="translate(0 -2)" fill="#34D1D6"></path>
+                                                        <path id="Path_34534" data-name="Path 34534" d="M11,18h2a1,1,0,0,0,1-1V3a1,1,0,0,0-1-1H11a1,1,0,0,0-1,1V17A1,1,0,0,0,11,18Z" transform="translate(0 -2)" fill="#34D1D6"></path>
+                                                        <path id="Path_34535" data-name="Path 34535" d="M17,12v5a1,1,0,0,0,1,1h2a1,1,0,0,0,1-1V12a1,1,0,0,0-1-1H18A1,1,0,0,0,17,12Z" transform="translate(0 -2)" fill="#34D1D6"></path>
                                                     </svg>
                                                     <span class="text-xl white font-bold networkVolumeStats-title">KLGD Cấp Dưới</span>
                                                     <vs-dropdown vs-custom-content vs-trigger-click>
@@ -409,10 +414,10 @@
                                                 <div class="cardHeader flex items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="22.678" height="22.678" viewBox="0 0 22.678 22.678" class="mr-2">
                                                         <g id="headphones-mic" transform="translate(0.5 0.5)">
-                                                            <path id="Path_29605" data-name="Path 29605" d="M1.5,9.826V6.014A5.515,5.515,0,0,1,7.014.5h6.893a5.515,5.515,0,0,1,5.514,5.514V9.826" transform="translate(0.379)" fill="none" stroke="#facc4f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path>
-                                                            <path id="Path_29606" data-name="Path 29606" d="M6.014,14.771H4.636A4.135,4.135,0,0,1,.5,10.636h0A4.135,4.135,0,0,1,4.636,6.5H6.014Z" transform="translate(0 2.271)" fill="none" stroke="#facc4f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path>
-                                                            <path id="Path_29607" data-name="Path 29607" d="M11.5,14.771h1.379a4.135,4.135,0,0,0,4.136-4.136h0A4.135,4.135,0,0,0,12.879,6.5H11.5Z" transform="translate(4.164 2.271)" fill="none" stroke="#facc4f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path>
-                                                            <path id="Path_29608" data-name="Path 29608" d="M12.15,16.636H5.257A2.756,2.756,0,0,1,2.5,13.879V12.5" transform="translate(0.757 4.543)" fill="none" stroke="#facc4f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path>
+                                                            <path id="Path_29605" data-name="Path 29605" d="M1.5,9.826V6.014A5.515,5.515,0,0,1,7.014.5h6.893a5.515,5.515,0,0,1,5.514,5.514V9.826" transform="translate(0.379)" fill="none" stroke="#34D1D6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path>
+                                                            <path id="Path_29606" data-name="Path 29606" d="M6.014,14.771H4.636A4.135,4.135,0,0,1,.5,10.636h0A4.135,4.135,0,0,1,4.636,6.5H6.014Z" transform="translate(0 2.271)" fill="none" stroke="#34D1D6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path>
+                                                            <path id="Path_29607" data-name="Path 29607" d="M11.5,14.771h1.379a4.135,4.135,0,0,0,4.136-4.136h0A4.135,4.135,0,0,0,12.879,6.5H11.5Z" transform="translate(4.164 2.271)" fill="none" stroke="#34D1D6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path>
+                                                            <path id="Path_29608" data-name="Path 29608" d="M12.15,16.636H5.257A2.756,2.756,0,0,1,2.5,13.879V12.5" transform="translate(0.757 4.543)" fill="none" stroke="#34D1D6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path>
                                                         </g>
                                                     </svg><span class="text-xl white font-bold getIntouch-title">Liên hệ</span>
                                                 </div>
@@ -420,17 +425,17 @@
                                                     <div class="vx-row">
                                                         <div class="vx-col lg:w-4/12 text-center">
                                                             <img :src="require('@/assets/images/sky/bot.svg')" alt="" class="mb-3">
-                                                            <p class="elipText white text-base mb-2 getIntouch-sub-title">Winbo.trade</p>
+                                                            <p class="elipText white text-base mb-2 getIntouch-sub-title">Diniti</p>
                                                         </div>
                                                         <div class="vx-col lg:w-8/12">
                                                             <p class="white-50 text-base mb-2 getIntouch-label">Địa chỉ Email</p>
                                                             <p class="flex items-center">
                                                                 <feather-icon icon="MailIcon" svgClasses="h-6 w-6 ml-1 c-mail" />
-                                                                <a :href="`mailto:louis00238@gmail.com`" class="elipText white text-base ml-2 getIntouch-value">Email support</a>
+                                                                <a :href="`mailto:louis00238@gmail.com`" class="elipText white text-base ml-2 getIntouch-value">contact@diniti.net</a>
                                                                 <!-- <a :href="`mailto:contact@${hostName}`" class="elipText white text-base ml-2 getIntouch-value">contact@{{hostName}}</a> -->
                                                             </p>
-                                                            <p class="white-50 text-base mb-2 getIntouch-label">24/7 Support</p>
-                                                            <p class="flex items-center">
+                                                            <!-- <p class="white-50 text-base mb-2 getIntouch-label">24/7 Support</p> -->
+                                                            <!-- <p class="flex items-center">
                                                                 <svg class="h-6 w-6 ml-1 c-mail" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve"><g><linearGradient xmlns="http://www.w3.org/2000/svg" id="Oval_00000153700382965497781030000014141664724916521630_" gradientTransform="matrix(1000 0 0 -1000 1981017 6242157)" gradientUnits="userSpaceOnUse" x1="-1980.761" x2="-1980.761" y1="6242.157" y2="6241.649"><stop offset="0" stop-color="#2aabee"></stop><stop offset="1" stop-color="#229ed9"></stop></linearGradient><g xmlns="http://www.w3.org/2000/svg" id="Artboard" clip-rule="evenodd" fill-rule="evenodd"><circle id="Oval" cx="256" cy="256" fill="url(#Oval_00000153700382965497781030000014141664724916521630_)" r="256" data-original="url(#Oval_00000153700382965497781030000014141664724916521630_)"></circle><path id="Path-3" d="m115.88 253.298c74.629-32.515 124.394-53.951 149.293-64.307 71.094-29.57 85.867-34.707 95.495-34.877 2.118-.037 6.853.488 9.92 2.977 4.55 3.692 4.576 11.706 4.071 17.01-3.853 40.48-20.523 138.713-29.004 184.051-3.589 19.184-10.655 25.617-17.495 26.246-14.866 1.368-26.155-9.825-40.554-19.263-22.531-14.77-35.26-23.964-57.131-38.376-25.275-16.656-8.89-25.81 5.514-40.771 3.77-3.915 69.271-63.494 70.539-68.899.159-.676.306-3.196-1.191-4.526s-3.706-.876-5.3-.514c-2.26.513-38.254 24.304-107.982 71.372-10.217 7.016-19.471 10.434-27.762 10.255-9.141-.197-26.723-5.168-39.794-9.417-16.032-5.211-28.774-7.967-27.664-16.817.578-4.611 6.926-9.325 19.045-14.144z" fill="#ffffff" data-original="#ffffff"></path></g></g></svg>
                                                                 <a :href="`https://t.me/jamepham`" target="_blank" class="elipText white text-base ml-2 getIntouch-value">Telegram support</a>
                                                             </p>
@@ -472,7 +477,7 @@
                                                                     </g>
                                                                 </g></svg>
                                                                 <a :href="`https://zalo.me/0704132656`" target="_blank" class="elipText white text-base ml-2 getIntouch-value">Zalo support</a>
-                                                            </p>
+                                                            </p> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -486,25 +491,30 @@
                         <div class="commission" :class="{'block': showCom}">
                             <div class="wraperContent">
                                 <div class="headerContent flex lg:flex-row flex-col justify-between items-center mb-4">
-                                    <h1 class="text-2xl white font-bold text-capitalize pointer affiliateCommission-title">
+                                    <!-- <h1 class="text-2xl white font-bold text-capitalize pointer affiliateCommission-title">
                                         Hoa hồng
                                         <span class="q cursor-pointer" @click="popupActiveCommission=true">
                                             <feather-icon icon="HelpCircleIcon" svgClasses="h-6 w-6 ml-1 c-question" />
                                         </span>
-                                    </h1>
+                                    </h1> -->
                                     <div class="affCommissionControl items-end flex flex-wrap">
                                         <div class="blockLine flex flex-col mr-3">
                                             <span class="type">Loại Hoa hồng</span>
-                                            <v-select class="w-64 relative" v-model="selectedHoaHong" :options="optionsHoaHong" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+                                            <v-select class="w-64 relative hidden xl:block" v-model="selectedHoaHong" :options="optionsHoaHong" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+                                            <div class="block xl:hidden">
+                                                <vs-button color="#e22a67" type="filled" @click="searchCapBac" class="mr-2">Hoa hồng giao dịch</vs-button>
+                                                <vs-button color="#4d4e4e" type="filled" @click="searchCapBac">Hoa hồng thành viên VIP</vs-button>
+                                            </div>
+
                                         </div>
-                                        <div class="blockLine flex flex-col mr-8 relative">
-                                            <div class="dateRange">
+                                        <div class="blockLine flex flex-col mr-8 relative mb-mx-auto">
+                                            <div class="dateRange fix-dateRange">
                                                 <datepicker class="customeTradeHistory startDate" :format="formatDate" v-model="startDate"></datepicker>
                                                 <span class="seperate">-</span>
                                                 <datepicker class="customeTradeHistory endDate" :format="formatDate" v-model="endDate"></datepicker>
                                             </div>
                                         </div>
-                                        <vs-button class="w-32" color="rgb(62, 201, 214)" type="filled" @click="clickSearchDateTimeHoaHong">Tìm kiếm</vs-button>
+                                        <vs-button class="w-32 btn-search" color="rgb(62, 201, 214)" type="filled" @click="clickSearchDateTimeHoaHong">Tìm kiếm</vs-button>
                                     </div>
                                 </div>
                                 <div class="notice-comission mb-4">
@@ -513,11 +523,11 @@
                                         <span style="color: #8D97A0;">Bạn sẽ nhận hoa hồng giao dịch từ tuyến dưới của ngay lập tức.</span>
                                     </p>
                                 </div>
-                                <div class="body vx-row">
+                                <div class="body vx-row fixRow-body">
                                     <!-- <div class="vx-col w-full lg:w-4/12 lg:mb-5 lg:pr-0">Mỗi ngày mới, bạn sẽ nhận hoa hồng giao dịch từ tuyến dưới của ngày hôm trước.
                                         <div class="wrap-chart bgSecondary boxShadowDashBoard commission-chart">
                                             <div class="header">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="19.135" height="16.02" viewBox="0 0 19.135 16.02"><g id="edit-curves" transform="translate(0 -2)"><path id="Path_29616" data-name="Path 29616" d="M5,13.9C14.346,13.9,9.673,3,19.02,3" transform="translate(-0.885 0)" fill="none" stroke="#facc4f" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path><path id="Path_29617" data-name="Path 29617" d="M18.135,17.02H1V3" transform="translate(0 0)" fill="none" stroke="#facc4f" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path></g></svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="19.135" height="16.02" viewBox="0 0 19.135 16.02"><g id="edit-curves" transform="translate(0 -2)"><path id="Path_29616" data-name="Path 29616" d="M5,13.9C14.346,13.9,9.673,3,19.02,3" transform="translate(-0.885 0)" fill="none" stroke="#34D1D6" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path><path id="Path_29617" data-name="Path 29617" d="M18.135,17.02H1V3" transform="translate(0 0)" fill="none" stroke="#34D1D6" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path></g></svg>
                                                 <span class="colorSecondary text-lg font-bold mb-0 ml-2 header-title">Biểu đồ Hoa hồng Giao dịch</span>
                                                 <div class="control flex items-center">
                                                 
@@ -530,7 +540,7 @@
                                             </div>
                                         </div>
                                     </div> -->
-                                    <div class="vx-col w-full lg:mt-0 mt-4">
+                                    <div class="vx-col w-full lg:mt-0 mt-4 fixCol-body">
                                         <div class="tableBackground bgSecondary trading-detail relative" v-if="selectedHoaHong.id == 1">
                                             <table class="table table-dark w-full tableComission bgSecondary" :class="{'ld-loading': isLoading}">
                                                 <div class="loading">
@@ -547,8 +557,8 @@
                                                             <div class="flex items-center">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14" viewBox="0 0 11 14" class="mr-2">
                                                                     <g id="single-copy-06" transform="translate(-1.278)">
-                                                                        <rect id="Rectangle_4166" data-name="Rectangle 4166" width="10" height="11" transform="translate(1.778 2.5)" stroke-width="1" stroke="#facc4f" stroke-linecap="round" stroke-linejoin="round" fill="none"></rect>
-                                                                        <line id="Line_1332" data-name="Line 1332" x2="6" transform="translate(3.778 0.5)" fill="none" stroke="#facc4f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></line>
+                                                                        <rect id="Rectangle_4166" data-name="Rectangle 4166" width="10" height="11" transform="translate(1.778 2.5)" stroke-width="1" stroke="#34D1D6" stroke-linecap="round" stroke-linejoin="round" fill="none"></rect>
+                                                                        <line id="Line_1332" data-name="Line 1332" x2="6" transform="translate(3.778 0.5)" fill="none" stroke="#34D1D6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></line>
                                                                     </g>
                                                                 </svg><span class="white text-lg font-bold trading-detail-title">Chi tiết Lợi nhuận Giao dịch</span>
                                                             </div>
@@ -599,8 +609,8 @@
                                                             <div class="flex items-center">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14" viewBox="0 0 11 14" class="mr-2">
                                                                     <g id="single-copy-06" transform="translate(-1.278)">
-                                                                        <rect id="Rectangle_4166" data-name="Rectangle 4166" width="10" height="11" transform="translate(1.778 2.5)" stroke-width="1" stroke="#facc4f" stroke-linecap="round" stroke-linejoin="round" fill="none"></rect>
-                                                                        <line id="Line_1332" data-name="Line 1332" x2="6" transform="translate(3.778 0.5)" fill="none" stroke="#facc4f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></line>
+                                                                        <rect id="Rectangle_4166" data-name="Rectangle 4166" width="10" height="11" transform="translate(1.778 2.5)" stroke-width="1" stroke="#34D1D6" stroke-linecap="round" stroke-linejoin="round" fill="none"></rect>
+                                                                        <line id="Line_1332" data-name="Line 1332" x2="6" transform="translate(3.778 0.5)" fill="none" stroke="#34D1D6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></line>
                                                                     </g>
                                                                 </svg><span class="white text-lg font-bold trading-detail-title">Chi tiết Lợi nhuận Giao dịch</span>
                                                             </div>
@@ -643,17 +653,19 @@
                                         <div class="flex flex-wrap">
                                             <div class="relative colFirst lg:mr-5 align-middle">
                                                 <p class="color-white-50 mb-1 aff-test-type">Tìm kiếm bằng </p>
-                                                <button class="btn search btnSearchType lg:mr-3 button cursor-pointer" :class="{active: showActiveLv, primary: showActiveLv}" @click="showActiveLv=true, showActiveBD=false">Cấp bậc</button>
-                                                <button class="btn search btnSearchType button cursor-pointer" :class="{active: showActiveBD, primary: showActiveBD}" @click="showActiveBD=true,showActiveLv=false">Biệt danh</button>
+                                                <div class="fix-colFirst">
+                                                    <button class="btn search btnSearchType mr-3 button cursor-pointer" :class="{active: showActiveLv, primary: showActiveLv}" @click="showActiveLv=true, showActiveBD=false">Cấp bậc</button>
+                                                    <button class="btn search btnSearchType button cursor-pointer" :class="{active: showActiveBD, primary: showActiveBD}" @click="showActiveBD=true,showActiveLv=false">Biệt danh</button>
+                                                </div>
                                             </div>
-                                            <div class="md:w-1/2 align-middle">
+                                            <div class="md:w-1/2 align-middle mt-2 w-full">
                                                 <div class="lg:ml-8">
                                                     <div class="color-white-50 mb-1 aff-text-type">Xem Người bạn giới thiệu bằng {{ showActiveLv ? 'Cấp bậc' : 'tên' }}</div>
                                                     <div class="flex">
-                                                        <v-select :class="{block: showActiveLv, hidden: showActiveBD}"  class="w-32 relative mr-4" v-model="selectedLevel" :options="optionsLevel" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+                                                        <v-select :class="{block: showActiveLv, hidden: showActiveBD}"  class="w-32 relative mr-4 fix-width" v-model="selectedLevel" :options="optionsLevel" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
                                                         <vs-input :class="{block: showActiveBD, hidden: showActiveLv}" class="inputx mr-4 TnD" placeholder="Nhập tên người dùng" v-model="EnterNameUser" />
-                                                        <vs-button v-if="showActiveLv" color="rgb(62, 201, 214)" type="filled" @click="searchCapBac">Tìm kiếm</vs-button>
-                                                        <vs-button v-else color="rgb(62, 201, 214)" type="filled" @click="searchName">Tìm kiếm</vs-button>
+                                                        <vs-button v-if="showActiveLv" color="rgb(62, 201, 214)" type="filled" @click="searchCapBac" class="fix-width">Tìm kiếm</vs-button>
+                                                        <vs-button v-else color="rgb(62, 201, 214)" type="filled" @click="searchName" class="fix-width">Tìm kiếm</vs-button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -796,7 +808,7 @@ const chartOne = {
     },
     series: [
         {
-            color: '#31baa0',
+            color: '#34D1D6',
             name: ' ',
             data: [0, 0, 0, 0]
         }, 
@@ -866,7 +878,7 @@ const chartTwo = {
     },
     series: [
         {
-            color: '#31baa0',
+            color: '#34D1D6',
             name: ' ',
             data: [0, 0, 0, 0]
         }, 
@@ -935,7 +947,7 @@ const chartThree = {
     },
     series: [
         {
-            color: '#31baa0',
+            color: '#34D1D6',
             name: ' ',
             data: [0, 0, 0, 0]
         }, 
@@ -978,7 +990,8 @@ export default {
             loading: false,
             linkDk: '',
             codeGioiThieu: '',
-            isDongY: false,
+            isDongY1: false,
+            isDongY2: false,
             dongYMua: false,
             popupBuyThamGiaVip: false,
             isVip: false,
@@ -1055,6 +1068,12 @@ export default {
     },
 
     methods: {
+
+        checkPreBuy() {
+            if (this.isDongY1 === true && this.isDongY2 === true)
+                return true;
+            return false;
+        },
 
         saoChep(){
                 return this.$vs.notify({
@@ -1534,7 +1553,7 @@ export default {
 .affiliatePage .subBanner {
     color: #fff;
     height: 120px;
-    background-color: #02142b !important;
+    background-color: #090f3e !important;
 }
 
 .affiliatePage .banner .content {
@@ -1546,51 +1565,51 @@ export default {
 }
 
 .affiliatePage .banner {
-    background-image: url('~@/assets/images/sky/bitono_affiliate_bg.png');
+    background-image: url("https://didi.azureedge.net/affiliate_bg.png");
 }
 
 .affiliatePage .banner {
     position: relative;
     width: 100%;
-    min-height: calc(100vh - 120px);
+    min-height: calc(92vh - 120px);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
 }
 
 .color-yellow {
-    color: #facc4f;
+    color: #34D1D6;
 }
 
 .table-bordered td {
-    border-color: #facc4f;
+    border-color: #34D1D6;
 }
 
 .table-bordered thead th {
     color: hsla(0,0%,100%,.5);
-    font-weight: 400;
+    font-weight: 700;
     border-bottom-width: 1px;
-    border-color: #facc4f;
+    border-color: #34D1D6;
 }
 
 .btnTime.active {
-    background-color: #facc4f;
+    background-color: #34D1D6;
     color: #fff;
-    border-color: #facc4f;
+    border-color: #34D1D6;
 }
 
 .btnTime {
     padding: 5px 11px;
     margin-bottom: 5px;
     border-radius: 5px;
-    border: 1px solid #facc4f;
-    color: #facc4f;
+    border: 1px solid #34D1D6;
+    color: #34D1D6;
     background-color: transparent;
     white-space: nowrap;
 }
 
 .textTime {
-    color: #facc4f;
+    color: #34D1D6;
 }
 
 .v-select .vs__dropdown-toggle {
@@ -1600,7 +1619,7 @@ export default {
 .btnSearchType {
     background-color: #414141;
     color: #fff;
-    border: 1px solid #facc4f;
+    border: 1px solid #34D1D6;
     border-radius: 10px;
     min-width: 162px;
     padding: 9px 0;
@@ -1619,9 +1638,16 @@ export default {
 }
 
 .filterDiv {
-    background-color: #13263e;
+    /* background-color: #13263e; */
     padding: 37px 42px;
     margin-bottom: 33px;
+}
+
+@media (max-width: 1200px) {
+.filterDiv {
+    padding: 2rem;
+}
+    
 }
 
 .tableBackground .table-dark td:first-child:after {
@@ -1647,18 +1673,18 @@ export default {
     bottom: 0;
     left: 0;
     width: 100%;
-    border-bottom: 1px solid #facc4f;
+    border-bottom: 1px solid #34D1D6;
 }
 
 .tableBackground .table-dark thead th {
-    font-weight: 400;
+    font-weight: 700;
     font-size: .75rem;
-    color: #facc4f;
+    color: #34D1D6;
 }
 
 .tableBackground {
     border-radius: 20px;
-    border: 1px solid #facc4f;
+    border: 1px solid #34D1D6;
     height: 100%;
     overflow: hidden;
 }
@@ -1677,7 +1703,7 @@ export default {
 }
 
 .c-question, .c-mail {
-    stroke: #facc4f;
+    stroke: #34D1D6;
 }
 
 .elipText {
@@ -1705,7 +1731,7 @@ export default {
 }
 
 .networkVolumeStats .cardFooter {
-    background-color: #facc4f;
+    background-color: #34D1D6;
     color: #000;
 }
 
@@ -1730,7 +1756,7 @@ export default {
 }
 
 .networkVolumeStats .texthead {
-    color: #facc4f;
+    color: #34D1D6;
 }
 
 .networkVolumeStats .cardBody .head p {
@@ -1739,7 +1765,7 @@ export default {
 
 .networkVolumeStats .cardBody .border-bottom, 
 .networkVolumeStats .cardBody .border-top {
-    border-color: #facc4f!important;
+    border-color: #34D1D6!important;
 }
 
 .networkVolumeStats .cardBody {
@@ -1771,12 +1797,12 @@ export default {
     -webkit-box-shadow: none;
     box-shadow: none;
     position: relative;
-    border: 1px solid #facc4f;
+    border: 1px solid #34D1D6;
 }
 
 .wrap-chart .header {
     padding: 15px;
-    border-bottom: 1px solid #facc4f;
+    border-bottom: 1px solid #34D1D6;
 }
 
 .groupButton .leftControl {
@@ -1792,22 +1818,22 @@ export default {
     font-size: .875rem;
     background-color: #fafafa;
     border: 1px solid;
-    border-radius: 8px 0 0 8px;
-    border-color: #facc4f;
+    border-radius: 8px;
+    border-color: #34D1D6;
     height: 40px;
     line-height: 40px;
 }
 
 .button.primary, 
 .button.primary:hover {
-    background-color: #facc4f !important;
+    background-color: #34D1D6 !important;
     color: #fff!important;
 }
 
 .groupButton .btn {
     line-height: 37px;
     height: 100%;
-    border-radius: 0 3px 3px 0;
+    border-radius: 3px 3px 3px 3px;
     border: none;
     width: 90px;
     display: -webkit-box;
@@ -1820,7 +1846,7 @@ export default {
 }
 
 .colorSuccess {
-    color: #31baa0;
+    color: #34D1D6;
 }
 
 .colorDanger {
@@ -1828,7 +1854,7 @@ export default {
 }
 
 .colorPrimary {
-    color: #facc4f;
+    color: #34D1D6;
 }
 
 
@@ -1837,10 +1863,11 @@ export default {
     border-radius: 18px;
     height: 100%;
     overflow: hidden;
+    border: 1px solid #34D1D6;
 }
 
 .borderBottom {
-    border-color: #facc4f;
+    border-color: #34D1D6;
 }
 
 .white-50 {
@@ -1863,8 +1890,8 @@ export default {
 
 .boxBasic .heading .textRank {
     font-size: 17px;
-    color: #facc4f;
-    border: 1px solid #facc4f;
+    color: #34D1D6;
+    border: 1px solid #34D1D6;
     border-radius: 14px;
     padding: 1rem 1rem 1rem 80px;
     margin-bottom: 0;
@@ -1883,12 +1910,12 @@ export default {
 }
 
 .bgSecondary {
-    background-color: #02142b !important;
+    background-color: #090f3e !important;
 }
 
 .borderSecondary {
     border: 1px solid;
-    border-color: #facc4f;
+    border-color: #34D1D6;
 }
 
 .boxRank {
@@ -1898,7 +1925,7 @@ export default {
 
 .borderBtSecondary {
     border-bottom: 1px solid;
-    border-color: #facc4f;
+    border-color: #34D1D6;
 }
 
 .boxBasic .heading {
@@ -1929,44 +1956,44 @@ export default {
 .iconRank.rank7 {
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('~@/assets/images/sky/rank/rank7.png');
+    background-image: url('~@/assets/images/sky/rank/rank71.png');
 }
 
 .iconRank.rank6 {
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('~@/assets/images/sky/rank/rank6.png');
+    background-image: url('~@/assets/images/sky/rank/rank61.png');
 }
 
 .iconRank.rank5 {
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('~@/assets/images/sky/rank/rank5.png');
+    background-image: url('~@/assets/images/sky/rank/rank51.png');
 }
 
 .iconRank.rank4 {
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('~@/assets/images/sky/rank/rank4.png');
+    background-image: url('~@/assets/images/sky/rank/rank41.png');
 }
 
 
 .iconRank.rank3 {
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('~@/assets/images/sky/rank/rank3.png');
+    background-image: url('~@/assets/images/sky/rank/rank31.png');
 }
 
 .iconRank.rank2 {
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('~@/assets/images/sky/rank/rank2.png');
+    background-image: url('~@/assets/images/sky/rank/rank21.png');
 }
 
 .iconRank.rank1 {
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('~@/assets/images/sky/rank/rank1.png');
+    background-image: url('~@/assets/images/sky/rank/rank11.png');
 }
 
 .dateRange {
@@ -2065,4 +2092,238 @@ export default {
     background: transparent;
     border-bottom: 1px solid #fff !important;
 }
+.button-buy {
+
+}
+.btn-large[data-v-e34fad3a] {
+    white-space: nowrap;
+    padding: 11px 2.5rem;
+}
+.button[data-v-e34fad3a]:hover {
+    opacity: 1;
+    text-decoration: none;
+}
+.line-height-normal[data-v-e34fad3a] {
+    line-height: normal!important;
+}
+.color-white[data-v-e34fad3a] {
+    color: #fff;
+}
+.font-weight-700[data-v-e34fad3a] {
+    font-weight: 700;
+}
+.font-30[data-v-e34fad3a] {
+    font-size: 30px!important;
+}
+. btn-green[data-v-e34fad3a] {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700px;
+    font-style: normal;
+    font-family: Sarabun, sans-serif;
+    padding: 11px 40px;
+}
+.button[data-v-e34fad3a] {
+    cursor: pointer;
+    border: none;
+    background: 0 0;
+    position: relative;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    font-weight: 700!important;
+    text-decoration: none;
+}
+.btn {
+    /* display: inline-block; */
+    /* font-weight: 400; */
+    /* color: #212529; */
+    text-align: center;
+    vertical-align: middle;
+    /* -webkit-user-select: none; */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* background-color: transparent; */
+    /* border: 1px solid transparent; */
+    /* padding: .375rem .75rem; */
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: .25rem;
+    /* -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out; */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+}
+.button[data-v-e34fad3a] {
+    /* display: -webkit-inline-box; */
+    /* display: -ms-inline-flexbox; */
+    display: inline-flex;
+    -webkit-box-align: center;
+    /* -ms-flex-align: center; */
+    align-items: center;
+    -webkit-box-pack: center;
+    /* -ms-flex-pack: center; */
+    justify-content: center;
+}
+
+.checkboxInput[data-v-2875bc82] {
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+}
+a {
+    color: #34d1d6;
+    /* text-decoration: none; */
+    background-color: transparent;
+}
+.affiliatePage .affiliateInfo .inputGroup .input-append .button[data-v-e34fad3a] {
+    width: 95px;
+    height: 31px;
+    line-height: normal;
+}
+
+.affiliatePage .affiliateInfo .button[data-v-e34fad3a] {
+    white-space: nowrap;
+}
+.button[data-v-e34fad3a]:hover {
+    opacity: 1;
+    text-decoration: none;
+}
+.button.primary[data-v-e34fad3a] {
+    background-color: #34d1d6!important;
+    color: #fff!important;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.button[data-v-e34fad3a] {
+    /* cursor: pointer; */
+    border: none;
+    background: 0 0;
+    position: relative;
+    /* -webkit-transition: all .3s ease; */
+    transition: all .3s ease;
+    font-weight: 700!important;
+    text-decoration: none;
+}
+
+.copy-btn {
+    position: relative;
+    width: 500px;
+    height: 40px;
+}
+
+.copy-btn-input {
+    position: absolute;
+    width: 500px;
+    height: 50px;
+    z-index: 0;
+}
+
+.copy-btn-button {
+    position: absolute;
+    width: 75px;
+    height: 25px;
+    right: 7.5px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    border-radius: 5px;
+    background-color: #34D1D6 !important;
+    color: #fff;
+    border: 0px;
+}
+
+.copy-btn-2 {
+    position: relative;
+    width: 250px;
+    height: 40px;
+}
+
+.copy-btn-input-2 {
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    z-index: 0;
+}
+
+.copy-btn-button-2 {
+    position: absolute;
+    width: 75px;
+    height: 25px;
+    right: 7.5px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    border-radius: 5px;
+    background-color: #34D1D6 !important;
+    color: #fff;
+    border: 0px;
+}
+
+@media only screen and (max-width: 1024px) {
+.mobile-version .form-control[data-v-e34fad3a] {
+    font-size: .75rem;
+}}
+@media only screen and (max-width: 844px) {
+.MGT,.affiliateInfo {
+    /* width: 111%; */
+    position: relative;
+    /* margin-right: 10px; */
+}
+.leftControl[data-v-e34fad3a] {
+    width: 100%;
+}
+.fix-gobal .container{
+    padding: 0 !important;
+}
+.fix-gobal .container .dashboard-page .vx-row {
+    margin: 0 !important;
+}
+.fix-gobal .container .dashboard-page .vx-row > .vx-col {
+    padding: 0 !important;
+}
+}
+.fix-dateRange {
+    border-bottom: 1px solid #fff !important;
+    margin-bottom: 1rem;
+}
+.fix-dateRange .customeTradeHistory, .fix-dateRange .customeAffiliateCommission {
+    background: none;
+    padding-right: 0 !important;
+}
+.fix-dateRange .customeTradeHistory input, .fix-dateRange .customeAffiliateCommission input {
+    text-align: center;
+    border-bottom: none !important
+}
+@media (max-width: 576px) {
+    .btn-search {
+        width: 100% !important;
+    }
+    .mb-mx-auto {
+        margin: 0 auto;
+    }
+    .fixRow-body {
+        margin: 0 !important
+    }
+    .fixCol-body {
+        padding: 0 !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .fix-colFirst {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .fix-colFirst .btnSearchType {
+        min-width: 100% !important;
+    } 
+    .fix-width {
+        min-width: calc(50% - 4px) !important;
+    }
+}
+
 </style>

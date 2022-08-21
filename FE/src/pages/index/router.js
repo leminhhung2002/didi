@@ -136,6 +136,15 @@ const router = new Router({
                     }
                 },
                 {
+                    path: '/user/profile',
+                    name: 'profile-user',
+                    component: () => import('../../views/Profile.vue'),
+                    meta: {
+                        title: 'Profile',
+                        requiresAuth: true
+                    }
+                },
+                {
                     path: '/user/exchange',
                     name: 'exchange-user',
                     component: () => import('../../views/trading/Exchange.vue'),
@@ -160,6 +169,15 @@ const router = new Router({
                     component: () => import('../../views/trading/Affiliate.vue'),
                     meta: {
                         title: 'Affiliate General',
+                        requiresAuth: true
+                    }
+                },
+                {
+                    path: '/streak-challenge',
+                    name: 'streak',
+                    component: () => import('../../views/trading/Streak.vue'),
+                    meta: {
+                        title: 'Streak Challenge',
                         requiresAuth: true
                     }
                 },
@@ -203,7 +221,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     //document.title = to.meta.title;
-    document.title = 'WINBO.TRADE';
+    document.title = 'Diniti';
     
 
     AuthenticationService.getStatusServer()

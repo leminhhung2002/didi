@@ -48,3 +48,6 @@ vSelect.props.components.default = () => ({
 });
 
 Vue.component(vSelect)
+
+const eventBus = new Vue();
+export default eventBus

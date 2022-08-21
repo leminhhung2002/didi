@@ -61,6 +61,11 @@ const actions = {
     setToken ({commit}, token) {
       commit('SET_TOKEN', token, {root: true})
     },
+    setShowNotice ({commit}, data) {
+      commit('UPDATE_SHOW_NOTICE', data)
+    },
+
+    
 }
 
 export default actions

@@ -39,7 +39,7 @@ function generateDataHeatMap(count, yrange) {
     return series;
 }
 
-const themeColors = ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+const themeColors = ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
 
 export default {
     lineChartSimple: {
@@ -84,7 +84,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       lineChartSimple: {
         series: [{
           name: "Desktops",
@@ -161,7 +161,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       lineAreaChartSpline: {
         series: [{
             name: 'series1',
@@ -254,7 +254,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       columnChart: {
         series: [{
             name: 'Net Profit',
@@ -337,7 +337,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       barChart: {
         series: [{
             data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
@@ -440,7 +440,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       mixedChart: {
         series: [{
             name: 'TEAM A',
@@ -778,7 +778,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       candlestickChart: {
         series: [{
           data: [{ x: new Date(1538778600000), y: [6629.81, 6650.5, 6623.04, 6633.33] },
@@ -920,7 +920,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       bubbleChart: {
         series: [{
             name: 'Product1',
@@ -1109,7 +1109,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       scatterChart: {
         series: [{
           name: "SAMPLE A",
@@ -1316,7 +1316,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       heatMapChart: {
         series: [{
             name: 'Metric1',
@@ -1419,7 +1419,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       pieChart: {
         series: [44, 55, 13, 43],
         chartOptions: {
@@ -1466,7 +1466,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       donutChart: {
         series: [44, 55, 41, 17],
         chartOptions: {
@@ -1522,7 +1522,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       radialBarChart: {
         series: [44, 55, 67, 83],
         chartOptions: {
@@ -1571,7 +1571,7 @@ export default {
 <script>
   data() {
     return {
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#31baa0', '#EA5455', '#FF9F43', '#1E1E1E']
       radarChart: {
         series: [{
           name: 'Series 1',

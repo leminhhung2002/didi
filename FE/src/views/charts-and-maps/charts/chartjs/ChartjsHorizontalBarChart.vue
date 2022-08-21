@@ -58,7 +58,7 @@ export default {
                 labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
                 datasets: [{
                     label: "Population (millions)",
-                    backgroundColor: ["#7367F0", "#28C76F", "#EA5455", "#FF9F43", "#1E1E1E"],
+                    backgroundColor: ["#7367F0", "#31baa0", "#EA5455", "#FF9F43", "#1E1E1E"],
                     data: [2478, 5267, 734, 784, 433]
                 }]
             },

@@ -468,7 +468,7 @@ components: {
 }
 
 .greenButton {
-    background: #23c15f !important;
+    background: #31baa0 !important;
 }
 
 

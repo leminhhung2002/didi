@@ -29,6 +29,9 @@ const mutations = {
   UPDATE_VERTICAL_NAV_MENU_ITEMS_MIN(state, val) {
     state.verticalNavMenuItemsMin = val
   },
+  UPDATE_SHOW_NOTICE(state, val) {
+    state.showNotice = val
+  },
   UPDATE_VERTICAL_NAV_MENU_WIDTH(state, width) {
     state.verticalNavMenuWidth = width
   },

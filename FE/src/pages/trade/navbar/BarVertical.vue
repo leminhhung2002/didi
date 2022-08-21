@@ -17,7 +17,11 @@
       <vs-navbar class="vx-navbar navbar-custom navbar-skelton" :color="navbarColorLocal" :class="textColor">
         
         <!-- SM - OPEN SIDEBAR BUTTON -->
-        <feather-icon class="sm:inline-flex xl:hidden cursor-pointer p-2" icon="MenuIcon" @click.stop="showSidebar" />
+        <div class="icon-toggle cursor-pointer" @click.stop="showSidebar" >
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
 
         <router-link tag="div" class="vx-logo cursor-pointer" to="/">
           <logo class="w-full fill-current text-primary" />
@@ -61,13 +65,13 @@ export default {
   },
   computed: {
     navbarColorLocal() {
-      return this.$store.state.theme === "dark" && this.navbarColor === "#fff" ? "#02142b" : this.navbarColor
+      return this.$store.state.theme === "dark" && this.navbarColor === "#fff" ? "#090f3e" : this.navbarColor
     },
     verticalNavMenuWidth() {
       return this.$store.state.verticalNavMenuWidth
     },
     textColor() {
-      return {'text-white': (this.navbarColor != '#02142b' && this.$store.state.theme === 'dark') || (this.navbarColor != '#fff' && this.$store.state.theme !== 'dark')}
+      return {'text-white': (this.navbarColor != '#090f3e' && this.$store.state.theme === 'dark') || (this.navbarColor != '#fff' && this.$store.state.theme !== 'dark')}
     },
     windowWidth() {
       return this.$store.state.windowWidth
@@ -102,5 +106,34 @@ h1, h2{
     /*visibility: hidden;
     width: 0px;*/
   }
+}
+
+.icon-toggle {
+  width: 32px;
+  height: 32px;
+}
+
+@media screen and (min-width: 1200px){
+  .icon-toggle{
+    display: none;
+  }
+}
+
+.icon-toggle i {
+  margin-top: 4px;
+  width: 24px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #fff;
+  display: block;
+}
+
+.icon-toggle i:nth-child(3) {
+  width: 12px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #fff;
+  display: block;
+  margin-bottom: 3px;
 }
 </style>

@@ -10,7 +10,7 @@
             <main data-v-59d426a6 class="wrapper-main-content primary1">
         <header class="header">
             <div class="header-bg">
-                <img width="100%" height="100%" class="main-banner" src="require('@/assets/images/sky/aothe.png')">
+                <!-- <img width="100%" height="100%" class="main-banner" :src="require('@/assets/images/sky/Wallpaper-BG.png')" > -->
                 <!-- <video playsinline="" autoplay="" muted="" loop="" class="header-bg-video">
                     <source :src="require('@/assets/images/sky/header-bg.mp4')" type="video/mp4">
                 </video>-->
@@ -32,14 +32,14 @@
                         <vs-button
                             class="button secondary btnMainBorder signbtn btn-large  w-75 text-decoration-none lg:mr-4 mr-1 ml-1"
                             color="#2b2e3b" icon-pack="feather" style="width: 110px; height: 48px; background: #2f3342;"
-                            @click="RegisterUrl">Đăng Nhập</vs-button>
+                            @click="LoginUrl">Đăng Nhập</vs-button>
 
 
                     </div>
                 </div>
                 <div data-v-4f41e170 class="container main-banner-content-text">
                     <h2 data-v-4f41e170="0" class="main-banner-title">Kỷ nguyên mới của giao dịch tiền điện tử</h2>
-                    <p data-v-4f41e170 class="main-banner-desc">Didi là một nền tảng giao dịch sáng tạo cung cấp cho các
+                    <p data-v-4f41e170 class="main-banner-desc">Diniti là một nền tảng giao dịch sáng tạo cung cấp cho các
                         nhà giao
                         dịch trải nghiệm đặc biệt với các tính năng tiên tiến.</p>
                     <div data-v-4f41e170 class="main-banner-link">
@@ -47,8 +47,8 @@
                             class="uppercase mx-auto start btn-start button primary borderRounded font-20 text-decoration-none cl">Bắt
                             đầu miễn phí</a>
                     </div>
-                    <div data-v-4f41e170="" class="col-lg-12 col-md-12 col-sm-12 d-flex justify-content-end"><img
-                            data-v-4f41e170="" src="http://didi.azureedge.net/home/Mockup-1.png" width="561"
+                    <div data-v-4f41e170="" class="col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center"><img
+                            data-v-4f41e170="" src="~@/assets/images/sky/Mockup-1.png" width="561"
                             height="381" class="main-banner-image"></div>
                     <!--<div class="forms forms_1 forms--dark text-center">
                         <vs-button class="h-16 text-2xl" color="rgb(62, 201, 214)" type="filled" @click="LoginUrl">Bắt đầu giao dịch</vs-button>
@@ -60,14 +60,14 @@
 
         </header>
         <div data-v-4f41e170 class="sub-info">
-            <div data-v-4f41e170 class="container">
+            <div data-v-4f41e170 class="container" style="width:62.5%">
                 <div data-v-4f41e170 class="sub-info-swiper">
                 <div data-v-4f41e170 class="row">
 
                     <div data-v-4f41e170 class="lg:w-1/3 pr-4 pl-4 md:w-full pr-4 pl-4 sm:w-full pr-4 pl-4">
                         <p data-v-4f41e170>
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABHNCSVQICAgIfAhkiAAAAe1JREFUOE+1lTtMAkEQhmcuJgIJaiyhEGOhNEpMiI0F1BZS2gGtiRGxs1EbS8WY2GJpZY4CW2yNxqiNNCoNLfGR4BWGcXbD6h3e7aHGqza7c9/+89pB8PhitcLIYBuzBmKKgBIIGBOmvG7w+pqQTCtAlUa69OSGwN5NAQxYxip2qACII14Xy32iJzKwZAU6+70XOMACGmxjjYEJLbD3kOj6LURpO/wT3IU++qr0upHVM3xcwSX410o1yiV4qlrcQoTNH7nvYUwE2/WF3S38cwi+q5YhwfhpscBne+o8OToB9ZcmvL5bvg6EBwIwORSBy9aDw5ZV5zFeXTM5YYsyJOEInMyvwx2Dc+eHWriAHs0tQ3woClm2vWjdf8GJKgwuNgBhTO3uTC9BJprUwu1Qs3kBG7fHTu+4/EQoqNdnHdwX2oW5gsWZG7xfqPj/Wyjs6u3wlasyHMzmZUxd3bf9yMm7cSTPrQwUXJ35QaWdSB43R46bo6yrLQXvCyq5XG7yNXsz+CmEYR1c1LejpLw6D+DZCnZi/9fS4mKpum2ccUhmfNtNYyCSZoU6KfHCOZ7NfkLixeVmkCFwPJvK+LfK7UoVy300tQ0eS1DwS6hQyUOwxO6XtKPJ7mZXfQaBMgQYU/GXxc8DlfdMBppew/QDvPAeHSIzLhMAAAAASUVORK5CYII="
-                                alt="tick"></img>
+                                alt="tick"/>
                         </p>
                         <h2 data-v-4f41e170 class="sub-info__title"> Tài khoản Demo $1.000</h2>
                         <h2 data-v-4f41e170 class="sub-info__desc"> Kiểm tra và trau dồi kỹ năng giao dịch của bạn bằng
@@ -77,7 +77,7 @@
                     <div data-v-4f41e170 class="lg:w-1/3 pr-4 pl-4 md:w-full pr-4 pl-4 sm:w-full pr-4 pl-4">
                         <p data-v-4f41e170>
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABHNCSVQICAgIfAhkiAAAAe1JREFUOE+1lTtMAkEQhmcuJgIJaiyhEGOhNEpMiI0F1BZS2gGtiRGxs1EbS8WY2GJpZY4CW2yNxqiNNCoNLfGR4BWGcXbD6h3e7aHGqza7c9/+89pB8PhitcLIYBuzBmKKgBIIGBOmvG7w+pqQTCtAlUa69OSGwN5NAQxYxip2qACII14Xy32iJzKwZAU6+70XOMACGmxjjYEJLbD3kOj6LURpO/wT3IU++qr0upHVM3xcwSX410o1yiV4qlrcQoTNH7nvYUwE2/WF3S38cwi+q5YhwfhpscBne+o8OToB9ZcmvL5bvg6EBwIwORSBy9aDw5ZV5zFeXTM5YYsyJOEInMyvwx2Dc+eHWriAHs0tQ3woClm2vWjdf8GJKgwuNgBhTO3uTC9BJprUwu1Qs3kBG7fHTu+4/EQoqNdnHdwX2oW5gsWZG7xfqPj/Wyjs6u3wlasyHMzmZUxd3bf9yMm7cSTPrQwUXJ35QaWdSB43R46bo6yrLQXvCyq5XG7yNXsz+CmEYR1c1LejpLw6D+DZCnZi/9fS4mKpum2ccUhmfNtNYyCSZoU6KfHCOZ7NfkLixeVmkCFwPJvK+LfK7UoVy300tQ0eS1DwS6hQyUOwxO6XtKPJ7mZXfQaBMgQYU/GXxc8DlfdMBppew/QDvPAeHSIzLhMAAAAASUVORK5CYII="
-                                alt="tick"></img>
+                                alt="tick"/>
                         </p>
                         <h2 data-v-4f41e170 class="sub-info__title"> Nạp tiền chỉ từ $5</h2>
                         <h2 data-v-4f41e170 class="sub-info__desc"> Nạp tiền nhanh chóng trong vòng vài phút. Phí rút
@@ -87,7 +87,7 @@
                     <div data-v-4f41e170 class="lg:w-1/3 pr-4 pl-4 md:w-full pr-4 pl-4 sm:w-full pr-4 pl-4">
                         <p data-v-4f41e170>
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABHNCSVQICAgIfAhkiAAAAe1JREFUOE+1lTtMAkEQhmcuJgIJaiyhEGOhNEpMiI0F1BZS2gGtiRGxs1EbS8WY2GJpZY4CW2yNxqiNNCoNLfGR4BWGcXbD6h3e7aHGqza7c9/+89pB8PhitcLIYBuzBmKKgBIIGBOmvG7w+pqQTCtAlUa69OSGwN5NAQxYxip2qACII14Xy32iJzKwZAU6+70XOMACGmxjjYEJLbD3kOj6LURpO/wT3IU++qr0upHVM3xcwSX410o1yiV4qlrcQoTNH7nvYUwE2/WF3S38cwi+q5YhwfhpscBne+o8OToB9ZcmvL5bvg6EBwIwORSBy9aDw5ZV5zFeXTM5YYsyJOEInMyvwx2Dc+eHWriAHs0tQ3woClm2vWjdf8GJKgwuNgBhTO3uTC9BJprUwu1Qs3kBG7fHTu+4/EQoqNdnHdwX2oW5gsWZG7xfqPj/Wyjs6u3wlasyHMzmZUxd3bf9yMm7cSTPrQwUXJ35QaWdSB43R46bo6yrLQXvCyq5XG7yNXsz+CmEYR1c1LejpLw6D+DZCnZi/9fS4mKpum2ccUhmfNtNYyCSZoU6KfHCOZ7NfkLixeVmkCFwPJvK+LfK7UoVy300tQ0eS1DwS6hQyUOwxO6XtKPJ7mZXfQaBMgQYU/GXxc8DlfdMBppew/QDvPAeHSIzLhMAAAAASUVORK5CYII="
-                                alt="tick"></img>
+                                alt="tick"/>
                         </p>
                         <h2 data-v-4f41e170 class="sub-info__title"> Đặt lệnh nhỏ nhất $1</h2>
                         <h2 data-v-4f41e170 class="sub-info__desc"> Thật dễ dàng để bắt đầu giao dịch với số tiền nhỏ.
@@ -110,7 +110,7 @@
                             <div data-v-4f41e170 class="w-full mt-5">
                                 <p data-v-4f41e170 class="security-description">
 
-                                    Didi tiếp tục đổi mới và cập nhật nền tảng giao dịch bằng cách thêm các tính năng
+                                    Diniti tiếp tục đổi mới và cập nhật nền tảng giao dịch bằng cách thêm các tính năng
                                     mới để bạn có thể giao dịch thành công hơn và tận hưởng trải nghiệm người dùng tốt
                                     hơn.
 
@@ -122,7 +122,7 @@
                                 <div data-v-4f41e170
                                     class="security-item lg:w-1/3 pr-4 pl-4 md:w-full pr-4 pl-4 sm:w-full pr-4 pl-4">
                                     <img data-v-4f41e170="" width="25" height="25"
-                                        src="~@/assets/images/sky/shield.3403e8c7.png" class="security-item-icon"></img>
+                                        src="~@/assets/images/sky/shield.3403e8c7.png" class="security-item-icon"/>
                                     <h3 data-v-4f41e170="" class="security-item-title">
                                         Nền tảng bảo mật cao
                                     </h3>
@@ -137,7 +137,7 @@
                                     class="security-item lg:w-1/3 pr-4 pl-4 md:w-full pr-4 pl-4 sm:w-full pr-4 pl-4">
                                     <img data-v-4f41e170="" width="25" height="25"
                                         src="~@/assets/images/sky/lightning-fill.0aa01706.png"
-                                        class="security-item-icon"></img>
+                                        class="security-item-icon"/>
                                     <h3 data-v-4f41e170="" class="security-item-title">
 
                                         Thích hợp cho mọi người
@@ -156,7 +156,7 @@
                                     class="security-item lg:w-1/3 pr-4 pl-4 md:w-full pr-4 pl-4 sm:w-full pr-4 pl-4">
                                     <img data-v-4f41e170="" width="25" height="25"
                                         src="~@/assets/images/sky/currency-exchange.2f450568.png"
-                                        class="security-item-icon"></img>
+                                        class="security-item-icon"/>
                                     <h3 data-v-4f41e170="" class="security-item-title">
 
                                         Các chỉ báo hữu ích
@@ -250,8 +250,8 @@
 
             </div>
             <div data-v-4f41e170="" class="text-right">
-                <img data-v-4f41e170="" width="560" src="http://didi.azureedge.net/home/Mockup-3.png" height="550"
-                    class="trade-now-img"></img>
+                <img data-v-4f41e170="" width="560" src="~@/assets/images/sky/Mockup-3.png" height="550"
+                    class="trade-now-img"/>
             </div>
         </section>
         <section data-v-4f41e170="" class="cryptocurrencies">
@@ -282,10 +282,10 @@
                         <div data-v-4f41e170="" class="block logo">
                             <p data-v-4f41e170="" class="mb-lg-2 mb-1">
                                 <img data-v-7e36f564="" width="236" height="73" src="~@/assets/images/sky/logo.57b09ac4.svg"
-                                    alt=""></img>
+                                    alt=""/>
                             </p>
 
-                            <div data-v-7e36f564="" class="font-12 txtContent">© 2021 <div data-v-7e36f564=""
+                            <div data-v-7e36f564="" class="font-12 txtContent">© {{new Date().getFullYear()}} <div data-v-7e36f564=""
                                     class="text-domain d-inline-block">Didi</div> All rights reserved.</div>
                             <p data-v-7e36f564="">Email: <a data-v-7e36f564=""
                                     href="mailto:contact@didi.biz">contact@didi.biz</a></p>
@@ -391,10 +391,10 @@ export default {
 </script>
 
 <style scoped>
-@import "~@/assets/css/Home.css";
+
 
 .main-banner[data-v-d36eb9da] {
-    background: #011022;
+    background: #02102C;
     padding: 150px 0 280px;
     position: relative;
     z-index: 2;
@@ -1313,12 +1313,12 @@ export default {
         text-align: center;
     }
 }
-
+/* 
 @media only screen and (max-width: 490px) {
     .header__btn {
         zoom: 0.7;
     }
-}
+} */
 
 @media screen and (max-width:1024.98px) {
     .desc {
@@ -1976,7 +1976,6 @@ user agent stylesheet a:-webkit-any-link {
     padding: 30px 10px;
     background: #090f3e;
     z-index: 1;
-
 }
 
 .main-banner .sub-info[data-v-4f41e170] {
@@ -2150,14 +2149,11 @@ user agent stylesheet a:-webkit-any-link {
 }
 
 .main-banner-image[data-v-4f41e170] {
+    position: absolute;
+    top: -41px;
     right: 50%;
     -webkit-transform: translate(50%);
     transform: translate(50%);
-}
-
-.main-banner-image[data-v-4f41e170] {
-    position: absolute;
-    top: -41px;
 }
 
 audio:not(.md-image),
@@ -2768,18 +2764,22 @@ h2 {
 }
 @media screen and (max-width: 1024.98px) {
 .main-banner-image[data-v-4f41e170] {
-    right: -55px;
-    -webkit-transform: translate(0);
-    transform: translate(0);
+    position: absolute;
+    right: 50%;
+    -webkit-transform: translate(50%);
+    transform: translate(50%);
 }}
 .main-banner-image[data-v-4f41e170] {
+    position: absolute;
     right: 50%;
     -webkit-transform: translate(50%);
     transform: translate(50%);
 }
 .main-banner-image[data-v-4f41e170] {
     position: absolute;
-    right: 50;
+    right: 50%;
+    -webkit-transform: translate(50%);
+    transform: translate(50%);
 }
 audio:not(.md-image), canvas:not(.md-image), embed:not(.md-image), iframe:not(.md-image), img:not(.md-image), object:not(.md-image), video:not(.md-image) {
     height: auto;
@@ -2816,9 +2816,10 @@ p {
 }
 @media screen and (max-width: 1024.98px) {
 .main-banner-image[data-v-4f41e170] {
-    right: -55px;
-    
-    transform: translate(0);
+    position: absolute;
+    right: 50%;
+    -webkit-transform: translate(50%);
+    transform: translate(50%);
 }}
 @media screen and (max-width: 1023px) {
 .btn-start[data-v-4f41e170] {
@@ -2839,7 +2840,9 @@ p {
 }
 @media screen and (max-width: 1600px ) {
 .main-banner-image[data-v-4f41e170] {
-    left: 50;
+    position: absolute;
+    right: 50%;
+    transform: translate(50%);
 }
 }
 @media screen and (max-width: 1024.98px) {
@@ -2982,5 +2985,20 @@ audio, canvas, embed, iframe, img, object, video {
 @media (min-width: 576px) {
 .col-sm-12 {
     
+}
+}
+@media screen and (max-width: 1024.98px) {
+.main-banner .sub-info[data-v-4f41e170] {
+    padding: 30px 10px;
+}
+.main-banner .sub-info[data-v-4f41e170] {
+    width: 100%;
+    
+    background: #090f3e;
+    z-index: 1;
+} }
+@media (min-width: 576px) {
+.container, .container-sm {
+    max-width: 90%;
 }}
 </style>

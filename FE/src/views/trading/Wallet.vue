@@ -1,13 +1,13 @@
 <template>
   <div id="wallet">
     <div class="vx-row">
-        <div class="w-full h-48 subBanner">
-            <div class="container h-full flex items-center info">
+        <div data-v-84c9a680 class="w-full h-48 subBanner aothe">
+            <div class="container h-full flex items-center info justify-between">
                 <div class="flex flex-col justify-center relative">
                     <p class="text-lg">
-                        Tổng tài sản (USD)   
+                        Tổng tài sản (USDT)   
                     </p>
-                    <p>
+                    <p v-if="isHiddenBalance">
                         <span class="price mr-2" v-if="getSetSys.typeCurrUseSys == 'usdt'">
                             {{ formatPrice(balanceForUser * getSetSys.quotePriceUSDT, 2) }}
                         </span>
@@ -20,23 +20,31 @@
                         <span :class="`icon ${getSetSys.typeCurrUseSys} inline-block`"></span>
                         <!--<span class="basePrice text-lg">~ ${{ formatPrice(balanceUser, 2) }}</span> -->
                     </p>
+                    <p class="price mr-2" v-else>
+                        ********
+                    </p>
+                </div>
+                <div class="cursor-pointer hidden-white" @click="isHiddenBalance = !isHiddenBalance">
+                    <feather-icon style="top: 5px;" icon="EyeIcon" svgClasses="w-6 h-5" v-if="isHiddenBalance"></feather-icon>
+                    <feather-icon style="top: 5px;" icon="EyeOffIcon" svgClasses="w-6 h-5" v-else></feather-icon>
+                    {{ isHiddenBalance ? 'Hiện số dư' : 'Ẩn số dư' }}
                 </div>
             </div>
         </div>
-        <div class="w-full" style="padding: 0 4rem">
+        <div class="w-full balance-mobile" style="padding: 0 4rem">
             <div class="container">
                 <vs-tabs>
-                    <vs-tab label="Ví chính" @click="getListHisTrade(), showVC = true, showVGD = false"></vs-tab>
-                    <vs-tab label="Ví giao dịch" @click="getListHisTradeWGD(), showVGD = true, showVC = false"></vs-tab>
+                    <vs-tab class="aothe1" label="Ví chính" @click="getListHisTrade(), showVC = true, showVGD = false"></vs-tab>
+                    <vs-tab class="aothe1" label="Ví giao dịch" @click="getListHisTradeWGD(), showVGD = true, showVC = false"></vs-tab>
                 </vs-tabs>
                 <div class="showV" :class="{block: showVC}">
                     <div class="box-coin-wrapper">
-                        <div class="flex justify-between flex-col items-baseline lg:flex-row">
-                            <h4 class="text-2xl color-white font-bold mb-3">Tài khoản chính:</h4>
+                        <!-- <div class="flex justify-between flex-col items-baseline lg:flex-row"> -->
+                            <!-- <h4 class="text-2xl color-white font-bold mb-3">Tài khoản chính:</h4> -->
                             <!-- <h6 class="colorGray mb-0 italic"><span >Giá trị ước tính: {{ giaTriUocTinh }} USD</span></h6> -->
-                        </div>
-                        <div class="vx-row">
-                            <div class="vx-col w-full lg:w-1/2 mb-3" v-if="getSetSys.isActiveWalletUSDT">
+                        <!-- </div> -->
+                        <div class="vx-row fixRow-boxCoin">
+                            <div class="vx-col w-full mb-3 fixCol-boxCoin" v-if="getSetSys.isActiveWalletUSDT">
                                 <div class="boxCoin">
                                     <div class="boxCoin-body">
                                         <div class="leftBox flex flex-col sm:flex-row">
@@ -59,11 +67,11 @@
                                     <div class="boxCoinFooter">
                                         <div>
                                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAeCAYAAABJ/8wUAAAABHNCSVQICAgIfAhkiAAAAiJJREFUWIXt1jF22kAQgOF/9uWFZ1fKCaIbBJeCRj5ByAkin8DQgZq4Ajp8A5MbOCcwLpDK2DewTxDoXGlSrCEWkkASkJci02nfrvbb1e6MhGNGHAaofkPFwdDDG06LuspRIfPwF4Kzfj55/4Gzq0VeV3M0RNz3UwiAl5dmUffjQSrGf8hm/DOQdzt7xH0XlY+ocZDEnvjW6P7vQaLwEiVAsSddlPVtj8KtV/EwkGjQASaAW5xltHdIRBYShwHKzY4xz7RG14dEpCHlEAC3mZZoMAHpoix2pfL1XAkTBAdlSnt4YTd/HjYRfpazay+1I3ljhQtInlBzl25PzsG4mQUrZ3ZHRCely45I+myYxEE3soByA/I9uwYJgK+ZdpM4hnnYBPHLKYAEN/XsjWegOddZshPmtak+4o1nBiEojbDxOdNy0uig+ljxPRZx2vABDGhhRcwNoUkcpvFnVwtOG34lzArxmgYMKp8qQQASJvaT1sRsICxk85+hTNgxd7UwOQgLQZeVIXUxBYhXCA+1IGUwb2/TFoR9VRReA5e1MQDKAjinPcwuKu77qDi0RtmMnIJUyqo1MSXC2IF5CalirD5T3Hd39s2FAKh094ZYzBJv/FQf0h4+2EK1T+gSpVN39J9q5Q2noL36CPHrno80BLDlXb8AzxUQ94g290HAttofDbooAVJQApQfGG53/gTtDVmFvQUuKg6iNhl549khJn8bvwEod96NMQX8+QAAAABJRU5ErkJggg==" alt="">
-                                            <a href="javascript:;" @click.stop="showPopNapRutTien(), getSetSys.isDepositOpen = true, getSetSys.isWithdraOpen = false">Nạp Tiền</a>
+                                            <a href="javascript:;" @click.stop="showPopNapRutTien('USDT'), getSetSys.isDepositOpen = true, getSetSys.isWithdraOpen = false">Nạp Tiền</a>
                                         </div>
                                         <div>
                                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAAABHNCSVQICAgIfAhkiAAAAhJJREFUSInFlk160lAUht+TZC6uQFyB2YFxymNqdtAoYVy6gtIVFMdCDStoBB+nhRVIV2DdAcwhxwGW34RwA9VvlOfc79z33txzf4QTS2sNFye9Ayogbel3rrN88gzQe5DKKqixDLofnw2cCd0DPwl4LzQHfjT4IGgG/CiwEXQLXhqsQVgltX8aQVe6tsqCSZ1wF6o9lNFmiEtguuU7d/L61VrDxdZzwEW0CtKTfqe1MqSPyPq4tSf9bqh+NNwCj5mLh6ND4MUiJg87YH0feQhXiHqrqIDirvtkcBurH1WAANJYBrdx3iTkx5ex1hoetrYQnWDPmxtrrP6nELG+5nWANXstSfyY2w6oHw0R3i4DKe/ke2e47bPWEpp7oQCpc7e33UAWLH/vzQF+V/3oXoOwTCVvaLHGou2Dt7Tgkdq/1K8nIAn2bCRJPDEFW+rXA0TemKVJBZEQIWHmuMX+DDBCUCbxWFmoVP8PeL30/yn49FovtCnObJwNVv19FEbSzaWyZyHKN5QRqmFexTsgY+BVebB1ASyPy7+gwoK1IE1KQxdy1Y+apkkWdpqwc20ZSrjRs/qFEViSeILSKrYW0l8auZ8+1I8ShA+lmKoPMuganWCr7bSoxtEeby4Ue+4VGze1czPoWdQCrg6kfpZ+17iwMsGwfMg1UQJEtrfaFDTGmreLHgXG4K1BVJ5uoKyXRFn9AQcq1fTcDi0cAAAAAElFTkSuQmCC" alt="">
-                                            <a href="javascript:;" @click.stop="showPopNapRutTien(), getSetSys.isDepositOpen = false, getSetSys.isWithdraOpen = true">Rút Tiền</a>
+                                            <a href="javascript:;" @click.stop="showPopNapRutTien('USDT'), getSetSys.isDepositOpen = false, getSetSys.isWithdraOpen = true">Rút Tiền</a>
                                         </div>
                                         <!--<div>
                                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAcCAYAAACQ0cTtAAAABHNCSVQICAgIfAhkiAAAAaxJREFUSIm11cFt2zAUxvH/EyRdK2/ADeINmkwQd4IoE9gB4qK3IrcCMRB1A3eCJBPE2cDZgCPIx1pqXg9V7CqWRDZh30kQHvijyE+kEKDMfJuj3CBagnyy1+m6qy8KgQEFQgZiUB7MfDv+f5hquXsWsj4wDCYyATYuUIJgQDPwCviwe6mUCCcve+jEzOd6gv46QyVziqIGxLTe/QXGztnq8y2I5xp0NDVLCoxce9aZqn8uIQNXQKrkDuXp3Zjy44/pUeaLGurauDu1QDh6DdlFmntjXhO63C4RzvoggMGAeEPzbQHDEIQ7rqYuCHq+zMw0I66+AmOQK7tIVg7sEfg4BHViZqYZSfXAS+xVx8BokKqSCXGVI5R2kS772loBOYD2g41sISXvrN2e9ULwPQQEzZf1QgPr/yZsACpBCr9R9L7vdm5jlz/vEDl901Rbk5MTV2qjIBAAz8eujgjV+zBY5PoXianTnLhaHRygsEblwsuJY2u/iXW17dPYDS7tdXruBXpUBGALKamT4467K28O2XCYA5wSqFqnfg+4IVAdXDF7UK+apDoj7Vu/AfL4ub5VTGABAAAAAElFTkSuQmCC" alt="">
@@ -71,9 +79,70 @@
                                         </div>-->
                                     </div>
                                 </div>
-                            </div>
-                            <div class="vx-col w-full lg:w-1/2 mb-3" v-if="getSetSys.isActiveWalletETH">
+
                                 <div class="boxCoin">
+                                    <div class="boxCoin-body">
+                                        <div class="leftBox flex flex-col sm:flex-row">
+                                            <div class="flex items-center">
+                                                <span class="curency-icon ALI"></span>
+                                                <span class="uppercase font-bold block sm:hidden">ALI</span>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <span class="uppercase font-bold">ALI</span>
+                                                <span class="capitalize colorGray">Alita</span>
+                                            </div>
+                                        </div>
+                                        <div class="rightBox">
+                                            <div class="flex flex-col items-end">
+                                                <span class="font-bold">{{ formatPrice(balanceUSDT, 2) }}</span>
+                                                <span class="colorGray">~${{ formatPrice(balanceUSDT * getSetSys.quotePriceUSDT, 2) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="boxCoinFooter">
+                                        <div>
+                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAeCAYAAABJ/8wUAAAABHNCSVQICAgIfAhkiAAAAiJJREFUWIXt1jF22kAQgOF/9uWFZ1fKCaIbBJeCRj5ByAkin8DQgZq4Ajp8A5MbOCcwLpDK2DewTxDoXGlSrCEWkkASkJci02nfrvbb1e6MhGNGHAaofkPFwdDDG06LuspRIfPwF4Kzfj55/4Gzq0VeV3M0RNz3UwiAl5dmUffjQSrGf8hm/DOQdzt7xH0XlY+ocZDEnvjW6P7vQaLwEiVAsSddlPVtj8KtV/EwkGjQASaAW5xltHdIRBYShwHKzY4xz7RG14dEpCHlEAC3mZZoMAHpoix2pfL1XAkTBAdlSnt4YTd/HjYRfpazay+1I3ljhQtInlBzl25PzsG4mQUrZ3ZHRCely45I+myYxEE3soByA/I9uwYJgK+ZdpM4hnnYBPHLKYAEN/XsjWegOddZshPmtak+4o1nBiEojbDxOdNy0uig+ljxPRZx2vABDGhhRcwNoUkcpvFnVwtOG34lzArxmgYMKp8qQQASJvaT1sRsICxk85+hTNgxd7UwOQgLQZeVIXUxBYhXCA+1IGUwb2/TFoR9VRReA5e1MQDKAjinPcwuKu77qDi0RtmMnIJUyqo1MSXC2IF5CalirD5T3Hd39s2FAKh094ZYzBJv/FQf0h4+2EK1T+gSpVN39J9q5Q2noL36CPHrno80BLDlXb8AzxUQ94g290HAttofDbooAVJQApQfGG53/gTtDVmFvQUuKg6iNhl549khJn8bvwEod96NMQX8+QAAAABJRU5ErkJggg==" alt="">
+                                            <a href="javascript:;" @click.stop="showPopNapRutTien('USDT'), getSetSys.isDepositOpen = true, getSetSys.isWithdraOpen = false">Nạp Tiền</a>
+                                        </div>
+                                        <div>
+                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAAABHNCSVQICAgIfAhkiAAAAhJJREFUSInFlk160lAUht+TZC6uQFyB2YFxymNqdtAoYVy6gtIVFMdCDStoBB+nhRVIV2DdAcwhxwGW34RwA9VvlOfc79z33txzf4QTS2sNFye9Ayogbel3rrN88gzQe5DKKqixDLofnw2cCd0DPwl4LzQHfjT4IGgG/CiwEXQLXhqsQVgltX8aQVe6tsqCSZ1wF6o9lNFmiEtguuU7d/L61VrDxdZzwEW0CtKTfqe1MqSPyPq4tSf9bqh+NNwCj5mLh6ND4MUiJg87YH0feQhXiHqrqIDirvtkcBurH1WAANJYBrdx3iTkx5ex1hoetrYQnWDPmxtrrP6nELG+5nWANXstSfyY2w6oHw0R3i4DKe/ke2e47bPWEpp7oQCpc7e33UAWLH/vzQF+V/3oXoOwTCVvaLHGou2Dt7Tgkdq/1K8nIAn2bCRJPDEFW+rXA0TemKVJBZEQIWHmuMX+DDBCUCbxWFmoVP8PeL30/yn49FovtCnObJwNVv19FEbSzaWyZyHKN5QRqmFexTsgY+BVebB1ASyPy7+gwoK1IE1KQxdy1Y+apkkWdpqwc20ZSrjRs/qFEViSeILSKrYW0l8auZ8+1I8ShA+lmKoPMuganWCr7bSoxtEeby4Ue+4VGze1czPoWdQCrg6kfpZ+17iwMsGwfMg1UQJEtrfaFDTGmreLHgXG4K1BVJ5uoKyXRFn9AQcq1fTcDi0cAAAAAElFTkSuQmCC" alt="">
+                                            <a href="javascript:;" @click.stop="showPopNapRutTien('USDT'), getSetSys.isDepositOpen = false, getSetSys.isWithdraOpen = true">Rút Tiền</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="boxCoin" v-if="getSetSys.isActiveWalletVND">
+                                    <div class="boxCoin-body">
+                                        <div class="leftBox flex flex-col sm:flex-row">
+                                            <div class="flex items-center">
+                                                <span class="curency-icon VND"></span>
+                                                <span class="uppercase font-bold block sm:hidden">NGÂN HÀNG VNĐ</span>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <span class="uppercase font-bold">NGÂN HÀNG VNĐ</span>
+                                                <!-- <span class="capitalize colorGray">VNĐ</span> -->
+                                            </div>
+                                        </div>
+                                        <div class="rightBox">
+                                            <div class="flex flex-col items-end">
+                                                <span class="font-bold">{{ formatPrice(balanceUSDT, 2) }}</span>
+                                                <span class="colorGray">~${{ formatPrice(balanceUSDT * getSetSys.quotePriceUSDT, 2) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="boxCoinFooter">
+                                        <div>
+                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAeCAYAAABJ/8wUAAAABHNCSVQICAgIfAhkiAAAAiJJREFUWIXt1jF22kAQgOF/9uWFZ1fKCaIbBJeCRj5ByAkin8DQgZq4Ajp8A5MbOCcwLpDK2DewTxDoXGlSrCEWkkASkJci02nfrvbb1e6MhGNGHAaofkPFwdDDG06LuspRIfPwF4Kzfj55/4Gzq0VeV3M0RNz3UwiAl5dmUffjQSrGf8hm/DOQdzt7xH0XlY+ocZDEnvjW6P7vQaLwEiVAsSddlPVtj8KtV/EwkGjQASaAW5xltHdIRBYShwHKzY4xz7RG14dEpCHlEAC3mZZoMAHpoix2pfL1XAkTBAdlSnt4YTd/HjYRfpazay+1I3ljhQtInlBzl25PzsG4mQUrZ3ZHRCely45I+myYxEE3soByA/I9uwYJgK+ZdpM4hnnYBPHLKYAEN/XsjWegOddZshPmtak+4o1nBiEojbDxOdNy0uig+ljxPRZx2vABDGhhRcwNoUkcpvFnVwtOG34lzArxmgYMKp8qQQASJvaT1sRsICxk85+hTNgxd7UwOQgLQZeVIXUxBYhXCA+1IGUwb2/TFoR9VRReA5e1MQDKAjinPcwuKu77qDi0RtmMnIJUyqo1MSXC2IF5CalirD5T3Hd39s2FAKh094ZYzBJv/FQf0h4+2EK1T+gSpVN39J9q5Q2noL36CPHrno80BLDlXb8AzxUQ94g290HAttofDbooAVJQApQfGG53/gTtDVmFvQUuKg6iNhl549khJn8bvwEod96NMQX8+QAAAABJRU5ErkJggg==" alt="">
+                                            <a href="javascript:;" @click.stop="showPopNapRutTien('VND'), getSetSys.isDepositOpen = true, getSetSys.isWithdraOpen = false">Nạp Tiền</a>
+                                        </div>
+                                        <div>
+                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAAABHNCSVQICAgIfAhkiAAAAhJJREFUSInFlk160lAUht+TZC6uQFyB2YFxymNqdtAoYVy6gtIVFMdCDStoBB+nhRVIV2DdAcwhxwGW34RwA9VvlOfc79z33txzf4QTS2sNFye9Ayogbel3rrN88gzQe5DKKqixDLofnw2cCd0DPwl4LzQHfjT4IGgG/CiwEXQLXhqsQVgltX8aQVe6tsqCSZ1wF6o9lNFmiEtguuU7d/L61VrDxdZzwEW0CtKTfqe1MqSPyPq4tSf9bqh+NNwCj5mLh6ND4MUiJg87YH0feQhXiHqrqIDirvtkcBurH1WAANJYBrdx3iTkx5ex1hoetrYQnWDPmxtrrP6nELG+5nWANXstSfyY2w6oHw0R3i4DKe/ke2e47bPWEpp7oQCpc7e33UAWLH/vzQF+V/3oXoOwTCVvaLHGou2Dt7Tgkdq/1K8nIAn2bCRJPDEFW+rXA0TemKVJBZEQIWHmuMX+DDBCUCbxWFmoVP8PeL30/yn49FovtCnObJwNVv19FEbSzaWyZyHKN5QRqmFexTsgY+BVebB1ASyPy7+gwoK1IE1KQxdy1Y+apkkWdpqwc20ZSrjRs/qFEViSeILSKrYW0l8auZ8+1I8ShA+lmKoPMuganWCr7bSoxtEeby4Ue+4VGze1czPoWdQCrg6kfpZ+17iwMsGwfMg1UQJEtrfaFDTGmreLHgXG4K1BVJ5uoKyXRFn9AQcq1fTcDi0cAAAAAElFTkSuQmCC" alt="">
+                                            <a href="javascript:;" @click.stop="showPopNapRutTien('VND'), getSetSys.isDepositOpen = false, getSetSys.isWithdraOpen = true">Rút Tiền</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="boxCoin" v-if="getSetSys.isActiveWalletETH">
                                     <div class="boxCoin-body">
                                         <div class="leftBox flex flex-col sm:flex-row">
                                             <div class="flex items-center">
@@ -95,11 +164,11 @@
                                     <div class="boxCoinFooter">
                                         <div>
                                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAeCAYAAABJ/8wUAAAABHNCSVQICAgIfAhkiAAAAiJJREFUWIXt1jF22kAQgOF/9uWFZ1fKCaIbBJeCRj5ByAkin8DQgZq4Ajp8A5MbOCcwLpDK2DewTxDoXGlSrCEWkkASkJci02nfrvbb1e6MhGNGHAaofkPFwdDDG06LuspRIfPwF4Kzfj55/4Gzq0VeV3M0RNz3UwiAl5dmUffjQSrGf8hm/DOQdzt7xH0XlY+ocZDEnvjW6P7vQaLwEiVAsSddlPVtj8KtV/EwkGjQASaAW5xltHdIRBYShwHKzY4xz7RG14dEpCHlEAC3mZZoMAHpoix2pfL1XAkTBAdlSnt4YTd/HjYRfpazay+1I3ljhQtInlBzl25PzsG4mQUrZ3ZHRCely45I+myYxEE3soByA/I9uwYJgK+ZdpM4hnnYBPHLKYAEN/XsjWegOddZshPmtak+4o1nBiEojbDxOdNy0uig+ljxPRZx2vABDGhhRcwNoUkcpvFnVwtOG34lzArxmgYMKp8qQQASJvaT1sRsICxk85+hTNgxd7UwOQgLQZeVIXUxBYhXCA+1IGUwb2/TFoR9VRReA5e1MQDKAjinPcwuKu77qDi0RtmMnIJUyqo1MSXC2IF5CalirD5T3Hd39s2FAKh094ZYzBJv/FQf0h4+2EK1T+gSpVN39J9q5Q2noL36CPHrno80BLDlXb8AzxUQ94g290HAttofDbooAVJQApQfGG53/gTtDVmFvQUuKg6iNhl549khJn8bvwEod96NMQX8+QAAAABJRU5ErkJggg==" alt="">
-                                            <a href="javascript:;" @click.stop="showPopNapRutTien()">Nạp Tiền</a>
+                                            <a href="javascript:;" @click.stop="showPopNapRutTien('USDT')">Nạp Tiền</a>
                                         </div>
                                         <div>
                                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAAABHNCSVQICAgIfAhkiAAAAhJJREFUSInFlk160lAUht+TZC6uQFyB2YFxymNqdtAoYVy6gtIVFMdCDStoBB+nhRVIV2DdAcwhxwGW34RwA9VvlOfc79z33txzf4QTS2sNFye9Ayogbel3rrN88gzQe5DKKqixDLofnw2cCd0DPwl4LzQHfjT4IGgG/CiwEXQLXhqsQVgltX8aQVe6tsqCSZ1wF6o9lNFmiEtguuU7d/L61VrDxdZzwEW0CtKTfqe1MqSPyPq4tSf9bqh+NNwCj5mLh6ND4MUiJg87YH0feQhXiHqrqIDirvtkcBurH1WAANJYBrdx3iTkx5ex1hoetrYQnWDPmxtrrP6nELG+5nWANXstSfyY2w6oHw0R3i4DKe/ke2e47bPWEpp7oQCpc7e33UAWLH/vzQF+V/3oXoOwTCVvaLHGou2Dt7Tgkdq/1K8nIAn2bCRJPDEFW+rXA0TemKVJBZEQIWHmuMX+DDBCUCbxWFmoVP8PeL30/yn49FovtCnObJwNVv19FEbSzaWyZyHKN5QRqmFexTsgY+BVebB1ASyPy7+gwoK1IE1KQxdy1Y+apkkWdpqwc20ZSrjRs/qFEViSeILSKrYW0l8auZ8+1I8ShA+lmKoPMuganWCr7bSoxtEeby4Ue+4VGze1czPoWdQCrg6kfpZ+17iwMsGwfMg1UQJEtrfaFDTGmreLHgXG4K1BVJ5uoKyXRFn9AQcq1fTcDi0cAAAAAElFTkSuQmCC" alt="">
-                                            <a href="javascript:;" @click.stop="showPopNapRutTien()">Rút Tiền</a>
+                                            <a href="javascript:;" @click.stop="showPopNapRutTien('USDT')">Rút Tiền</a>
                                         </div>
                                         <!--<div>
                                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAcCAYAAACQ0cTtAAAABHNCSVQICAgIfAhkiAAAAaxJREFUSIm11cFt2zAUxvH/EyRdK2/ADeINmkwQd4IoE9gB4qK3IrcCMRB1A3eCJBPE2cDZgCPIx1pqXg9V7CqWRDZh30kQHvijyE+kEKDMfJuj3CBagnyy1+m6qy8KgQEFQgZiUB7MfDv+f5hquXsWsj4wDCYyATYuUIJgQDPwCviwe6mUCCcve+jEzOd6gv46QyVziqIGxLTe/QXGztnq8y2I5xp0NDVLCoxce9aZqn8uIQNXQKrkDuXp3Zjy44/pUeaLGurauDu1QDh6DdlFmntjXhO63C4RzvoggMGAeEPzbQHDEIQ7rqYuCHq+zMw0I66+AmOQK7tIVg7sEfg4BHViZqYZSfXAS+xVx8BokKqSCXGVI5R2kS772loBOYD2g41sISXvrN2e9ULwPQQEzZf1QgPr/yZsACpBCr9R9L7vdm5jlz/vEDl901Rbk5MTV2qjIBAAz8eujgjV+zBY5PoXianTnLhaHRygsEblwsuJY2u/iXW17dPYDS7tdXruBXpUBGALKamT4467K28O2XCYA5wSqFqnfg+4IVAdXDF7UK+apDoj7Vu/AfL4ub5VTGABAAAAAElFTkSuQmCC" alt="">
@@ -107,9 +176,7 @@
                                         </div>-->
                                     </div>
                                 </div>
-                            </div>
-                            <div class="vx-col w-full lg:w-1/2 mb-3" v-if="getSetSys.isActiveWalletBTC">
-                                <div class="boxCoin">
+                                <div class="boxCoin"  v-if="getSetSys.isActiveWalletBTC">
                                     <div class="boxCoin-body">
                                         <div class="leftBox flex flex-col sm:flex-row">
                                             <div class="flex items-center">
@@ -131,11 +198,11 @@
                                     <div class="boxCoinFooter">
                                         <div>
                                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAeCAYAAABJ/8wUAAAABHNCSVQICAgIfAhkiAAAAiJJREFUWIXt1jF22kAQgOF/9uWFZ1fKCaIbBJeCRj5ByAkin8DQgZq4Ajp8A5MbOCcwLpDK2DewTxDoXGlSrCEWkkASkJci02nfrvbb1e6MhGNGHAaofkPFwdDDG06LuspRIfPwF4Kzfj55/4Gzq0VeV3M0RNz3UwiAl5dmUffjQSrGf8hm/DOQdzt7xH0XlY+ocZDEnvjW6P7vQaLwEiVAsSddlPVtj8KtV/EwkGjQASaAW5xltHdIRBYShwHKzY4xz7RG14dEpCHlEAC3mZZoMAHpoix2pfL1XAkTBAdlSnt4YTd/HjYRfpazay+1I3ljhQtInlBzl25PzsG4mQUrZ3ZHRCely45I+myYxEE3soByA/I9uwYJgK+ZdpM4hnnYBPHLKYAEN/XsjWegOddZshPmtak+4o1nBiEojbDxOdNy0uig+ljxPRZx2vABDGhhRcwNoUkcpvFnVwtOG34lzArxmgYMKp8qQQASJvaT1sRsICxk85+hTNgxd7UwOQgLQZeVIXUxBYhXCA+1IGUwb2/TFoR9VRReA5e1MQDKAjinPcwuKu77qDi0RtmMnIJUyqo1MSXC2IF5CalirD5T3Hd39s2FAKh094ZYzBJv/FQf0h4+2EK1T+gSpVN39J9q5Q2noL36CPHrno80BLDlXb8AzxUQ94g290HAttofDbooAVJQApQfGG53/gTtDVmFvQUuKg6iNhl549khJn8bvwEod96NMQX8+QAAAABJRU5ErkJggg==" alt="">
-                                            <a href="javascript:;" @click.stop="showPopNapRutTien()">Nạp Tiền</a>
+                                            <a href="javascript:;" @click.stop="showPopNapRutTien('USDT')">Nạp Tiền</a>
                                         </div>
                                         <div>
                                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAAABHNCSVQICAgIfAhkiAAAAhJJREFUSInFlk160lAUht+TZC6uQFyB2YFxymNqdtAoYVy6gtIVFMdCDStoBB+nhRVIV2DdAcwhxwGW34RwA9VvlOfc79z33txzf4QTS2sNFye9Ayogbel3rrN88gzQe5DKKqixDLofnw2cCd0DPwl4LzQHfjT4IGgG/CiwEXQLXhqsQVgltX8aQVe6tsqCSZ1wF6o9lNFmiEtguuU7d/L61VrDxdZzwEW0CtKTfqe1MqSPyPq4tSf9bqh+NNwCj5mLh6ND4MUiJg87YH0feQhXiHqrqIDirvtkcBurH1WAANJYBrdx3iTkx5ex1hoetrYQnWDPmxtrrP6nELG+5nWANXstSfyY2w6oHw0R3i4DKe/ke2e47bPWEpp7oQCpc7e33UAWLH/vzQF+V/3oXoOwTCVvaLHGou2Dt7Tgkdq/1K8nIAn2bCRJPDEFW+rXA0TemKVJBZEQIWHmuMX+DDBCUCbxWFmoVP8PeL30/yn49FovtCnObJwNVv19FEbSzaWyZyHKN5QRqmFexTsgY+BVebB1ASyPy7+gwoK1IE1KQxdy1Y+apkkWdpqwc20ZSrjRs/qFEViSeILSKrYW0l8auZ8+1I8ShA+lmKoPMuganWCr7bSoxtEeby4Ue+4VGze1czPoWdQCrg6kfpZ+17iwMsGwfMg1UQJEtrfaFDTGmreLHgXG4K1BVJ5uoKyXRFn9AQcq1fTcDi0cAAAAAElFTkSuQmCC" alt="">
-                                            <a href="javascript:;" @click.stop="showPopNapRutTien()">Rút Tiền</a>
+                                            <a href="javascript:;" @click.stop="showPopNapRutTien('USDT')">Rút Tiền</a>
                                         </div>
                                         <!--<div>
                                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAcCAYAAACQ0cTtAAAABHNCSVQICAgIfAhkiAAAAaxJREFUSIm11cFt2zAUxvH/EyRdK2/ADeINmkwQd4IoE9gB4qK3IrcCMRB1A3eCJBPE2cDZgCPIx1pqXg9V7CqWRDZh30kQHvijyE+kEKDMfJuj3CBagnyy1+m6qy8KgQEFQgZiUB7MfDv+f5hquXsWsj4wDCYyATYuUIJgQDPwCviwe6mUCCcve+jEzOd6gv46QyVziqIGxLTe/QXGztnq8y2I5xp0NDVLCoxce9aZqn8uIQNXQKrkDuXp3Zjy44/pUeaLGurauDu1QDh6DdlFmntjXhO63C4RzvoggMGAeEPzbQHDEIQ7rqYuCHq+zMw0I66+AmOQK7tIVg7sEfg4BHViZqYZSfXAS+xVx8BokKqSCXGVI5R2kS772loBOYD2g41sISXvrN2e9ULwPQQEzZf1QgPr/yZsACpBCr9R9L7vdm5jlz/vEDl901Rbk5MTV2qjIBAAz8eujgjV+zBY5PoXianTnLhaHRygsEblwsuJY2u/iXW17dPYDS7tdXruBXpUBGALKamT4467K28O2XCYA5wSqFqnfg+4IVAdXDF7UK+apDoj7Vu/AfL4ub5VTGABAAAAAElFTkSuQmCC" alt="">
@@ -143,9 +210,7 @@
                                         </div>-->
                                     </div>
                                 </div>
-                            </div>
-                            <div class="vx-col w-full lg:w-1/2 mb-3" v-if="getSetSys.isActiveWalletPaypal">
-                                <div class="boxCoin">
+                                <div class="boxCoin" v-if="getSetSys.isActiveWalletPaypal">
                                     <div class="boxCoin-body">
                                         <div class="leftBox flex flex-col sm:flex-row">
                                             <div class="flex items-center">
@@ -154,7 +219,7 @@
                                             </div>
                                             <div class="flex flex-col">
                                                 <span class="uppercase font-bold">Paypal</span>
-                                                 <!--<span class="capitalize colorGray">Tether</span>-->
+                                                <!--<span class="capitalize colorGray">Tether</span>-->
                                             </div>
                                         </div>
                                         <div class="rightBox">
@@ -237,13 +302,13 @@
                                                             <span>{{ formatDateWallet(tr.created_at) }}</span>
                                                         </div>
                                                         <div class="block-col text-right amount">
-                                                            <div v-if="blObj.displayName.toUpperCase() == tr.from_u.toUpperCase()">
+                                                            <template v-if="blObj.displayName.toUpperCase() == tr.from_u.toUpperCase()">
                                                                 <span class="red" v-if="tr.type_key == 'rt' || tr.type_key == 'ct' || tr.type_key == 'ctsa' || tr.type_key == 'nn' || tr.type_key == 'mv'">-{{ formatPrice(tr.amount, 2) }}</span>
                                                                 <span class="green" v-else>+{{ formatPrice(tr.amount, 2) }}</span>
-                                                            </div>
-                                                            <div v-else-if="blObj.displayName.toUpperCase() == tr.to_u.toUpperCase()">
+                                                            </template>
+                                                            <template v-else-if="blObj.displayName.toUpperCase() == tr.to_u.toUpperCase()">
                                                                 <span class="green">+{{ formatPrice(tr.amount, 2) }}</span>
-                                                            </div>
+                                                            </template>
                                                         </div>
                                                         <div class="block-col type">
                                                             <span class="deitalType transfer_in" v-if="tr.type_key == 'rt'">Rút tiền</span>
@@ -542,7 +607,7 @@
     <rut-tien :isSidebarActive="addSidebarRutTien" @closeSidebar="toggleDataSidebarRutTien"/> -->
     
     <vs-prompt title="" :active.sync="popupActiveNRTien" :buttons-hidden="true">
-      <nap-rut-tien />
+      <nap-rut-tien :typePay="typePay"/>
     </vs-prompt>
 
   </div>
@@ -615,6 +680,9 @@ components: {
         totalRHH: 0,
         dataHisWalletWGD: [],
         totalRWGD: 0,
+        isHiddenBalance: false,
+        connectionSetting: null,
+        typePay: '',
     }
   },
   computed: {
@@ -683,8 +751,9 @@ components: {
         return formatter.format(value);
     },
 
-    showPopNapRutTien(){
+    showPopNapRutTien(type = ''){
         this.popupActiveNRTien = true
+        this.typePay = type
     },
 
     // viewNapTien(){ 
@@ -1078,8 +1147,28 @@ components: {
                         iconPack: 'feather',
                         icon:'icon-x-circle'});
                 }
+
+                let dl = data.data
+
+                console.log(1111, dl)
+
+
+
             }.bind(this);
       }
+
+
+    this.connectionSetting = new WebSocket(SETTINGS.BASE_URL_SOCKET_SYS)
+    this.connectionSetting.onmessage = function(event) {
+
+        let data = JSON.parse(event.data)
+        let dl = data.data
+
+        if (dl) {
+            getSetSys.isActiveWalletVND = dl.isActiveWalletVND
+        }
+
+    }
       
 
 
@@ -1153,12 +1242,12 @@ components: {
 }
 
 .contentBox .background.backgroundLive {
-    background-color: #2e3c4c;
+    background-color: linear-gradient(180deg,#020024,#0139a8 0,#011d54)!important;
     background-image: url('~@/assets/images/sky/livebanner.png');
 }
 
 .contentBox .background.backgroundDemo {
-    background-color: #2e3c4c;
+    background-color: linear-gradient(180deg,#020024,#0139a8 0,#011d54)!important;
     background-image: url('~@/assets/images/sky/winbanner.png');
 }
 
@@ -1256,8 +1345,8 @@ components: {
 }
 
 .history .box-result .block-col.amount {
-    flex: 0 0 85px;
-    max-width: 85px;
+    flex: 0 0 120px;
+    max-width: 120px;
 }
 
 .history .box-result .block-col.status {
@@ -1328,7 +1417,7 @@ components: {
 }
 
 .history-body{
-    background: #02142b;
+    background: #090f3e;
     border-radius: 5px;
     border: none;
     padding: 0 !important;
@@ -1375,7 +1464,7 @@ components: {
     color: rgba(255, 255, 255, 0.3);
     height: 160px;
     width: 100%;
-    background-color: #2e3c4c;
+    background-color: linear-gradient(180deg,#020024,#0139a8 0,#011d54)!important;
 }
 
 .subBanner .price {
@@ -1400,7 +1489,7 @@ components: {
 
 .boxCoin .curency-icon.USDT,
 .subBanner .icon.USDT {
-    background-image: url(data:image/png;base64,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);
+    background-image: url('../../assets/images/icon-usdt.svg');
 }
 
 .boxCoin .curency-icon.ETH,
@@ -1413,6 +1502,16 @@ components: {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzciIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNyAzNiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhci1ncmFkaWVudCIgeDE9IjAuNTUiIHgyPSIwLjU0OSIgeTI9IjEiIGdyYWRpZW50VW5pdHM9Im9iamVjdEJvdW5kaW5nQm94Ij4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmE5NDFhIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Q4N2QwMCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPGcgaWQ9Ikdyb3VwXzE1MDEyIiBkYXRhLW5hbWU9Ikdyb3VwIDE1MDEyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTIgLTE1KSI+CiAgICA8ZyBpZD0iR3JvdXBfNDYxMyIgZGF0YS1uYW1lPSJHcm91cCA0NjEzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMiAxNSkiPgogICAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzI5MTkiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDI5MTkiIHdpZHRoPSIzNyIgaGVpZ2h0PSIzNiIgcng9IjE4IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDApIiBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudCkiLz4KICAgIDwvZz4KICAgIDxwYXRoIGlkPSJQYXRoXzEzOTIxIiBkYXRhLW5hbWU9IlBhdGggMTM5MjEiIGQ9Ik01MDIuNjI5LDM1Ni45NDljLjMzMy0yLjIyNy0xLjM2My0zLjQyNC0zLjY4MS00LjIyMmwuNzUzLTMuMDE2LTEuODM3LS40NTctLjczNCwyLjkzN2MtLjQ4Mi0uMTItLjk3OC0uMjM0LTEuNDcxLS4zNDZsLjczNi0yLjk1Ni0xLjgzNS0uNDU4LS43NTEsMy4wMTUtMy43LS45MTctLjQ4OSwxLjk2MXMxLjM2Mi4zMTIsMS4zMzQuMzMyYS45NzcuOTc3LDAsMCwxLC44NTYsMS4wNjhsLTIuMDYsOC4yNjNhLjY2Ny42NjcsMCwwLDEtLjg0MS40MzVjLjAxOC4wMjctMS4zMzUtLjMzNS0xLjMzNS0uMzM1bC0uOTEyLDIuMSwzLjcuOTM0LS43NiwzLjA1MSwxLjgzNC40NTcuNzUzLTMuMDE4Yy41LjEzNi45ODcuMjYxLDEuNDYzLjM3OWwtLjc1LDMsMS44MzYuNDU3Ljc2LTMuMDQ1YzMuMTMxLjU5Miw1LjQ4Ni4zNTMsNi40NzYtMi40NzYuOC0yLjI4LS4wMzktMy42LTEuNjg3LTQuNDUzYTIuOTMsMi45MywwLDAsMCwyLjM0NS0yLjdtLTQuMiw1Ljg4MmMtLjU2OSwyLjI4LTQuNDA3LDEuMDQ4LTUuNjUyLjczOGwxLjAwOC00LjA0MmMxLjI0NS4zMTEsNS4yMzYuOTI2LDQuNjQ0LDMuM20uNTY5LTUuOTE1Yy0uNTE4LDIuMDc1LTMuNzEzLDEuMDIxLTQuNzUuNzYybC45MTMtMy42NjdjMS4wMzcuMjU5LDQuMzc2Ljc0MSwzLjgzNiwyLjkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NjQuMTY1IC0zMjYuMDI2KSIgZmlsbD0iI2ZmZiIvPgogIDwvZz4KPC9zdmc+Cg==);
 }
 
+.boxCoin .curency-icon.ALI,
+.subBanner .icon.ALI {
+    background-image: url('https://www.bitmeta.trade/img/icon-ali.91990e8c.svg');
+}
+
+
+.boxCoin .curency-icon.VND,
+.subBanner .icon.VND {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgzIiBoZWlnaHQ9IjIyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNDMuMzQ2IDIxMy44OUwxLjQyMiAxMDUuMDU1Qy0yLjc4NSA5NC4xMyAyLjY1OCA4MS44NTcgMTMuNTkgNzcuNjQ3bDE5Ny44OC03Ni4yMmMxMC45MjUtNC4yMDkgMjMuMTk3IDEuMjM1IDI3LjQwNSAxMi4xNjZsNDEuOTI0IDEwOC44MzVjNC4yMDggMTAuOTI1LTEuMjM2IDIzLjE5OC0xMi4xNjcgMjcuNDA3TDcwLjc1OCAyMjYuMDU3Yy0xMC45MzIgNC4yMDctMjMuMTk4LTEuMjQyLTI3LjQxMi0xMi4xNjd6IiBmaWxsPSIjREU0QzNDIi8+PHBhdGggZD0iTTI1My45ODQgNTIuOEwxNi43MjIgMTQ0Ljc2N2wxNS43OTggNDEuMDExIDIzNy4yNzItOTEuOTI0TDI1My45ODQgNTIuOHoiIGZpbGw9IiM3QTQ5MzAiLz48cGF0aCBkPSJNLjAwMiAxMzcuODMzVjIxLjIwNUMuMDAyIDkuNDk1IDkuNDk3IDAgMjEuMjA4IDBoMjEyLjA0OWMxMS43MTEgMCAyMS4yMDYgOS40OTUgMjEuMjA2IDIxLjIwNXYxMTYuNjI4YzAgMTEuNzEtOS40OTUgMjEuMjA1LTIxLjIwNiAyMS4yMDVIMjEuMjA3Yy0xMS43MSAwLTIxLjIwNS05LjQ5NS0yMS4yMDUtMjEuMjA1eiIgZmlsbD0iIzQzOThEMSIvPjxwYXRoIGQ9Ik0yMzMuMjU3IDBoLTIyLjUzTDUxLjY4OSAxNTkuMDM4aDE4MS41NjhjMTEuNzExIDAgMjEuMjA2LTkuNDk1IDIxLjIwNi0yMS4yMDVWMjEuMjA1QzI1NC40NjMgOS40OTUgMjQ0Ljk2OCAwIDIzMy4yNTcgMHoiIGZpbGw9IiMzRThDQzciLz48cGF0aCBkPSJNMjEuMjA3IDg0LjgyaDIxLjIwNnYxMC42MDJIMjEuMjA4Vjg0Ljgyem0wIDMxLjgwOGgyMS4yMDZ2MTAuNjAySDIxLjIwOHYtMTAuNjAyem05NS40MjMgMGgyMS4yMDV2MTAuNjAySDExNi42M3YtMTAuNjAyek01My4wMTYgODQuODJoMjEuMjAzdjEwLjYwMkg1My4wMTZWODQuODJ6bTMxLjgwNiAwaDIxLjIwNXYxMC42MDJIODQuODIyVjg0Ljgyem0zMS44MDggMGgyMS4yMDV2MTAuNjAySDExNi42M1Y4NC44MnptMTAwLjcyMy02My42MTVoMTAuNjAzVjM3LjExaC0xMC42MDNWMjEuMjA1em0tMjEuMjA1IDBoMTAuNjAzVjM3LjExaC0xMC42MDNWMjEuMjA1em0tMjEuMjA2IDBoMTAuNjAzVjM3LjExaC0xMC42MDNWMjEuMjA1em0tMjEuMjAzIDBoMTAuNjAxVjM3LjExaC0xMC42MDFWMjEuMjA1eiIgZmlsbD0iIzVFQjNEMSIvPjxwYXRoIGQ9Ik0yMS4yMDcgNTUuMTMzVjI5LjY4OGE4LjQ4IDguNDggMCAwMTguNDgzLTguNDgzaDI1LjQ0NmE4LjQ3OCA4LjQ3OCAwIDAxOC40OCA4LjQ4M3YyNS40NDVhOC40NzkgOC40NzkgMCAwMS04LjQ4IDguNDgzSDI5LjY5YTguNDggOC40OCAwIDAxLTguNDgzLTguNDgzeiIgZmlsbD0iI0ZEQjYyRiIvPjxwYXRoIGQ9Ik0yMS4yMDcgMzcuMTFoMTUuOTA0djEwLjYwMkgyMS4yMDlWMzcuMTF6bTI2LjUwNyAwaDE1LjkwMnYxMC42MDJINDcuNzE0VjM3LjExeiIgZmlsbD0iI0ZEN0IyRiIvPjwvc3ZnPg==);
+}
 
 .boxCoin .curency-icon {
     width: 44px;
@@ -1426,7 +1525,7 @@ components: {
     color: #fff;
     border-radius: 5px;
     border: 1px solid rgba(112, 112, 112, 0.3);
-    background-color: #02142b;
+    background-color: #090f3e;
 }
 
 @media only screen and (max-width: 768px) {
@@ -1441,12 +1540,56 @@ components: {
         width: 860px;
     }
 }
-
 </style>
 
 <style>
 .content .inputGroup input {
     background: #fff;
     color: #545454;
+}
+.aothe {
+    background: -webkit-gradient(linear,left top,left bottom,from(#020024),color-stop(0,#0139a8),to(#011d54))!important;
+    background: linear-gradient(180deg,#020024,#0139a8 0,#011d54)!important;
+}
+.aothe1 {
+    color: #34d1d6!important;
+}
+.hidden-white {
+    color: white;
+}
+.fixCol-boxCoin {
+    display: flex;
+}
+.fixCol-boxCoin .boxCoin {
+    width: calc(50% - 1rem);
+    margin-right: 0.5rem;
+}
+@media (max-width: 1200px) {
+    .balance-mobile {
+        padding: 0!important;
+    }
+    .fixRow-boxCoin {
+        width: 100%;
+        margin: 0 !important;
+        margin-bottom: 1rem !important;
+    }
+    .fixCol-boxCoin {
+        margin: 0 !important;
+        width: 100%;
+        padding: 0 !important;
+    }
+    .fixCol-boxCoin .boxCoin {
+        border-radius: 1rem;
+    }
+
+    .fixCol-boxCoin {
+        display: flex;
+        flex-direction: column;
+    }
+    .fixCol-boxCoin .boxCoin {
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
 }
 </style>

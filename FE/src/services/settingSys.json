@@ -25,6 +25,7 @@
     "isActiveWalletETH": false,
     "isActiveWalletUSDT": false,
     "isActiveWalletBTC": false,
+    "isActiveWalletVND": true,
     "isDepositOpen": false,
     "isWithdraOpen": false
 }

@@ -19,7 +19,7 @@ html {
 body {
   font-family: $font-family-sans-serif;
   background: $theme-background;
-  font-weight: 400;
+  font-weight: 700;
   overflow-x: hidden;
   overflow-y: auto;
   max-width: 100%;
@@ -124,10 +124,7 @@ body {
 
 .navbar-floating {
   .router-content {
-    margin-top: 5.5rem;
-    @media (max-width: 576px) {
-      margin-top: 6rem;
-    }
+    margin-top: 56px;
   }
 }
 

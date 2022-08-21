@@ -59,7 +59,7 @@ export default {
                 datasets: [{
                     label: "Population (millions)",
                     // backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                    backgroundColor: ["#7367F0", "#28C76F", "#EA5455", "#FF9F43", "#1E1E1E"],
+                    backgroundColor: ["#7367F0", "#31baa0", "#EA5455", "#FF9F43", "#1E1E1E"],
                     data: [2478, 5267, 734, 784, 433]
                 }]
             },

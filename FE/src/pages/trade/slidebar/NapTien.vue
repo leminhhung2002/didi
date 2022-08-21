@@ -290,7 +290,7 @@ export default {
 }
 
 .vx-card{
-    background-color: #02142b;
+    background-color: #090f3e;
     border: 1px solid #b3b3b3;
     
     

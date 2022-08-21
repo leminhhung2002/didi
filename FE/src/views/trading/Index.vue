@@ -8,8 +8,8 @@
 
 <template>
   <div id="tradePage" class="trade-container">
-    <div class="vx-row m-0">
-        <div :class="['vx-col w-full relative trans lg:w-10/12']">
+    <div class="vx-row m-0 mt-2">
+        <div :class="['vx-col w-full leftBar relative trans']">
             <div class="h-full">
                 <div class="relative chartBox">
                     <highcharts ref="chartStock" class="wap-chart trans" :constructor-type="'stockChart'" :options="chartOptionsStock"></highcharts>
@@ -17,22 +17,22 @@
                         <span class="iconBTC"></span>
                         <span class="textPrice">BTC/USDT</span>
                     </div>
-                    <div class="slider sidebarMobile" style="height: 180px;">
+                    <div class="slider sidebarMobile lg:hidden" style="height: 100%;">
                         <div class="slidercontent">
                             <div class="backgroundOverlay" :style="`background-image: url(${require('@/assets/images/sky/overlay_left.svg')});`"></div>
-                            <div class="flex flex-col justify-between " style="height: 172px; margin-left: 10px;">
-                            <span class="font-12 zIndex99" style="color: rgb(252, 95, 95);">{{ CSSELL }}%</span>
-                                <vs-progress style="width: 130px;" class="bg-red progress" :height="4" :percent="CSBUY" color="success"></vs-progress>
-                                <span class="font-12 zIndex99" style="color: rgb(49, 186, 160);">{{ CSBUY }}%</span>
+                            <div class="flex flex-col justify-between" ref="refProgress" style="height: calc(100% - 100px);">
+                            <span class="font-12 zIndex99 text-center" style="color: rgb(252, 95, 95);">{{ CSSELL }}%</span>
+                                <vs-progress :style="`width: ${widthProgress}px; margin-left: 10px;`" class="bg-red progress" :height="4" :percent="CSBUY" color="success"></vs-progress>
+                                <span class="font-12 zIndex99 text-center" style="color: rgb(49, 186, 160);">{{ CSBUY }}%</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="analysis-wrapper" class="analysis-wrapper relative">
                     <vs-tabs>
-                        <vs-tab label="INDICATORS" @click="activeGau= true, activeHis=true">
+                        <vs-tab label="Indicators" @click="activeGau= true, activeHis=true">
                         </vs-tab>
-                        <vs-tab label="LAST RESULTS" @click="activeGau=true, activeHis=false">
+                        <vs-tab label="Last Result" @click="activeGau=true, activeHis=false">
                         </vs-tab>
                     </vs-tabs>
 
@@ -185,16 +185,16 @@
                     <div class="historyBox" :class="{active: !activeGau, hidden: activeHis}">
                         <div class="overviewInfo flex items-center">
                             <span class="badgeItem">
-                                <span class="color-green uppercase font-bold">Mua</span>
+                                <span class="color-green uppercase font-bold">BÁN</span>
                                 <span> {{ totalBuyStatic }}</span>
                             </span>
                             <span class="badgeItem ml-2">
-                                <span class="color-red uppercase font-bold">Bán</span>
+                                <span class="color-red uppercase font-bold">MUA</span>
                                 <span> {{ totalSellStatic }}</span>
                             </span>
                         </div>
                         <div class="ct flex justify-center">
-                            <div class="vx-row">
+                            <div class="vx-row fix-list-mobile">
                                 <div class="vx-col w-18 list1">
                                     <span class="gridcs-1 inline-flex m-1 item rounded-full empty"></span>
                                     <span class="gridcs-1 inline-flex m-1 item rounded-full empty"></span>
@@ -312,7 +312,7 @@
             </div>
 
         </div>
-        <div class="vx-col w-full lg:w-2/12 rightBar c-desktop trans">
+        <div class="vx-col w-full rightBar c-desktop trans">
             <div class="pc block">
                 <div class="mb-6">
                     <div class="mt-2 mb-2">
@@ -323,7 +323,9 @@
                             <span class="w-full bpF cursor-pointer num1 operator" @click="truBetAmount">-</span>
                         </div>
                         <div class="item-col md:w-6/12 w-full text-center mt-2 num1">
-                            <vs-input @keyup="nhapBetAmount" class="w-full inp d1123" icon-pack="feather" icon="icon-dollar-sign" placeholder="10" v-model="betAmount" icon-no-border />
+                            
+                            <vs-input @keyup="nhapBetAmount" class="w-full inp d1123 fix-dollar" icon-pack="feather" icon="icon-dollar-sign" placeholder="10" v-model="betAmount" icon-no-border />
+                            
                         </div>
                         <div class="item-col md:w-3/12 w-full text-center mt-2">
                             <span class="w-full bpF cursor-pointer num1 operator" @click="congBetAmount">+</span>
@@ -352,40 +354,40 @@
                 </div>
                 <div class="lg:relative mb-10">
                     <div class="text-center">
-                        <div class="profitPercent color-light-blue mb-2">Lợi nhuận <span>95%</span></div>
+                        <div class="profitPercent mb-2">Lợi nhuận <span class="color-green">95%</span></div>
                         <div class="profitValue color-green text-3xl font-bold">+${{ loiNhuan }}</div>
                     </div>
                 </div>
                 <div class="lg:relative mb-10 text-center">
-                    <div class="text-left">
+                    <div class="text-center">
                         Chỉ báo tâm lý
                     </div>
-                    <vs-progress class="bg-red" :height="4" :percent="CSBUY" color="success"></vs-progress>
+                    <vs-progress class="bg-green" :height="4" :percent="CSBUY" color="danger"></vs-progress>
                     <div class="block">
-                        <span class="color-green float-left">
+                        <span class="color-red float-left">
                             {{ CSBUY }}%
                         </span>
-                        <span class="color-red float-right">
+                        <span class="color-green float-right">
                             {{ CSSELL }}%
                         </span>
                     </div>
                 </div>
 
                 <div class="lg:relative mb-5 mt-10">
-                    <div class="pb-1 col-md-12 col-4 bet-box-time" style="border: 1px solid #fa2843;border-radius: 4px;background-color: #1d233b;">
-                        <a class="btn btn-trade-time btnTransparent w-100 flex flex-col justify-center items-center" style="height: 37px; color: #fff">
-                            <p class="font-14 mb-0" style="line-height: normal;" :class="{'text-danger': !isBet}">{{ textTimeDown }}:
-                                <span class="mb-0 font-bold ml-1 timer_counter second" style="line-height: normal;">{{ seconDown }}s</span>
-                            </p>
-                        </a>
-                    </div>
                     <div class="h-6"></div>
-                    <vs-button @click="BetBuySell('buy')" :disabled="!isBet" class="w-full h-12 font-bold mb-3" color="success" type="relief">
-                    TĂNG
+                    <vs-button @click="BetBuySell('buy')" :disabled="!isBet" class="w-full h-12 font-bold mb-3 btn-buy-sell" color="success" type="relief" :class="{'disabled': !isBet}">
+                    MUA
                         <feather-icon style="top: 5px;" icon="TrendingUpIcon" svgClasses="w-6 h-5"></feather-icon>
                     </vs-button>
-                    <vs-button @click="BetBuySell('sell')" :disabled="!isBet" class="w-full h-12 font-bold" color="danger" type="relief">
-                    GIẢM
+                    <div class="pb-1 col-md-12 col-4 bet-box-time" style="border: 1px solid #fa2843;border-radius: 4px;background-color: #1d233b;">
+                        <a class="btn btn-trade-time btnTransparent w-100 flex flex-col justify-center items-center" style="height: 50px; color: #fff">
+                            <p class="font-14 mb-0 text-timeDown" style="line-height: normal;" :class="{'text-danger': !isBet}">{{ textTimeDown }}:</p>
+                            <p class="mb-0 font-bold ml-1 timer_counter second text-time" style="line-height: normal;" :class="{'text-danger': !isBet}">{{ seconDown }}s</p>
+                        </a>
+                    </div>
+                    <div class="h-4"></div>
+                    <vs-button @click="BetBuySell('sell')" :disabled="!isBet" class="w-full h-12 font-bold btn-buy-sell" color="danger" type="relief" :class="{'disabled': !isBet}">
+                    BÁN
                         <feather-icon style="top: 5px;" icon="TrendingDownIcon" svgClasses="w-6 h-5"></feather-icon>
                     </vs-button>
                 </div>
@@ -405,35 +407,37 @@
                 <div class="relative">
                     <div class="mt-1 text-center c-loinhuan">
                         Lợi nhuận
-                        <span class="profitPercent color-light-blue mb-2">95%</span>
+                        <span class="profitPercent color-light-blue mb-2 mr-2">95%</span>
                         <span class="profitValue color-green text-2xl font-bold">+${{ loiNhuan }}</span>
                     </div>
                 </div>
                  <div class="relative">
                     <div class="flex">
-                        <div class="flex w-full mr-2">
+                        <div class="flex w-full mr-2 btn-minus-plus">
                         <vs-button @click="truBetAmount" class="w-full" type="border" icon-pack="feather" icon="icon-minus"></vs-button>
                         </div>
                         <div class="flex relative" style="width: 55rem;">
-                            <vs-input readonly="readonly" @click.stop="showMobileMenu=!showMobileMenu" class="w-full betInput" icon-pack="feather" icon="icon-dollar-sign" placeholder="10" v-model="betAmount" icon-no-border />
+                            <vs-input readonly="readonly" @click.stop="showMobileMenu=!showMobileMenu" class="w-full betInput fix-dollar" icon-pack="feather" icon="icon-dollar-sign" placeholder="10" v-model="betAmount" icon-no-border />
                             <feather-icon @click="clearBAmount()" style="right: 5px;top: 7px;position: absolute !important" class="cursor-pointer" icon="XCircleIcon" svgClasses="w-6 h-6 text-grey"></feather-icon>
                         </div>
-                        <div class="flex w-full ml-2">
+                        <div class="flex w-full ml-2 btn-minus-plus">
                         <vs-button @click="congBetAmount" class="w-full" type="border" icon-pack="feather" icon="icon-plus"></vs-button>
                         </div>
                     </div>
                 </div>
                 <div class="relative mb-5 mt-3">
                     <div style="display: flex; align-items: center;">
-                        <vs-button style="flex-grow: 1" size="large" @click="BetBuySell('sell')" :disabled="!isBet" class="font-bold" color="danger" type="relief">
-                        GIẢM
+                        <vs-button style="flex-grow: 1" size="large" @click="BetBuySell('sell')" :disabled="!isBet" class="font-bold btn-buy-sell" color="danger" type="relief" :class="{'disabled': !isBet}">
+                        BÁN
+                            <feather-icon style="top: 5px;" icon="TrendingDownIcon" svgClasses="w-6 h-5"></feather-icon>
                         </vs-button>
                         <vs-button size="small" class="font-bold" color="warning" type="dark">
                             <div>{{ textTimeDown }}</div>
                             <div class="display-remain-time timer_counter second">{{ seconDown }}</div>
                         </vs-button>
-                        <vs-button style="flex-grow: 1" size="large" @click="BetBuySell('buy')" :disabled="!isBet" class="font-bold" color="success" type="relief">
-                        TĂNG
+                        <vs-button style="flex-grow: 1" size="large" @click="BetBuySell('buy')" :disabled="!isBet" class="font-bold btn-buy-sell" color="success" type="relief" :class="{'disabled': !isBet}">
+                        MUA
+                            <feather-icon style="top: 5px;" icon="TrendingUpIcon" svgClasses="w-6 h-5"></feather-icon>
                         </vs-button>
                     </div>
                 </div>
@@ -449,7 +453,7 @@
                                         <vs-button @click="truBetAmount" class="w-full" type="border" icon-pack="feather" icon="icon-minus"></vs-button>
                                         </div>
                                     <div class="flex relative" style="width: 55rem;">
-                                        <vs-input readonly="readonly" @keyup="nhapBetAmount" class="w-full betInput" icon-pack="feather" icon="icon-dollar-sign" placeholder="10" v-model="betAmount" icon-no-border />
+                                        <vs-input readonly="readonly" @keyup="nhapBetAmount" class="w-full betInput fix-dollar" icon-pack="feather" icon="icon-dollar-sign" placeholder="10" v-model="betAmount" icon-no-border />
                                         <feather-icon @click="clearBAmount()" style="right: 5px;top: 7px;position: absolute !important;" class="cursor-pointer" icon="XCircleIcon" svgClasses="w-6 h-6 text-grey"></feather-icon>
                                     </div>
                                     <div class="flex w-full ml-2">
@@ -552,7 +556,7 @@ function convertTextValueMeter(t) {
     return t >= -90 && t <= -54 ? {cl: 'rank-1', text: "Strong sell", index: 1} : t > -54 && t <= -18 ? {cl: 'rank-2', text: "Sell", index: 2} : t > -18 && t <= 17 ? {cl: 'rank-3', text: "Neutral", index: 3} : t > 17 && t <= 53 ? {cl: 'rank-4', text: "Buy", index: 4} : t > 53 ? {cl: 'rank-5', text: "Strong Buy", index: 5} : void 0
 }
 
-var UP_COLOR = "#23c15f",  DOWN_COLOR = "#ee4b60", deviceVersion = 'pc'
+var UP_COLOR = "#31baa0",  DOWN_COLOR = "#ee4b60", deviceVersion = 'pc'
 
 var progressBar = $('.e-c-progress')
 var lengthp = Math.PI * 2 * 100;
@@ -581,6 +585,7 @@ const stockChart = {
         zoomType: "",
         backgroundColor: "transparent",
         // plotBackgroundImage: require('@/assets/images/sky/world_map.svg'),
+        plotBackgroundImage: 'https://didi3.biz/img/world_map.6aaf3347.svg',
         marginLeft: 0,
         marginRight: "pc" !== deviceVersion ? 60 : 80,
         marginBottom: "pc" !== deviceVersion ? 20 : 30,
@@ -1161,7 +1166,7 @@ const gaugeMeterMa = {
                 baseWidth: 6,
                 topWidth: 3
             }
-        }
+        },
     },
 
     series: [{
@@ -1248,6 +1253,7 @@ export default {
             },
         },
         isTablet,
+        widthProgress: '130',
     }
   },
   computed: {
@@ -2516,6 +2522,7 @@ export default {
     //}, 3000)
 
     this.$store.commit('SET_IS_RENDER_TRADE_INDEX', true);
+    this.widthProgress = this.$refs.refProgress.clientHeight - 40
   },
   destroyed() {
 
@@ -2556,9 +2563,9 @@ export default {
     position: absolute;
     top: 10px;
     left: 0;
-    padding: 0 10px;
+    padding: 7px 10px;
     border-radius: 5px;
-    background-color: rgba(39, 49, 62, 0.3);
+    background-color: #2f3242;
 }
 
 .titleChartCandle .iconBTC {
@@ -2815,7 +2822,7 @@ export default {
         position: absolute;
         left: 0;
         top: 0;
-        height: 100%;
+        height: calc(100% - 120px);
         width: 50px;
     }
     .sidebarMobile .slidercontent span {
@@ -3215,9 +3222,9 @@ export default {
         height: .8rem;
     }
 
-    .popupCongratulation{
-        zoom: 0.8;
-    }
+    // .popupCongratulation{
+    //     zoom: 0.8;
+    // }
 }
 
 @media screen and (max-width: 1300px) {
@@ -3469,8 +3476,21 @@ export default {
 </style>
 
 <style lang="scss">
-.h-full {
-    
+.leftBar {
+    margin: 0 !important;
+    padding-right: 0 !important;
+}
+@media screen and (min-width: 992px) {
+
+    .rightBar{
+        width: 210px; 
+        max-width: 210px;       
+    }
+
+    .leftBar {
+        width: calc(100% - 210px); 
+        max-width: calc(100% - 210px);       
+    }
 }
 
 
@@ -3478,7 +3498,8 @@ export default {
 
     #tradePage, .rightBar{
         height: calc(100vh - 77px);
-        border-left: 2px solid #000;
+        border-left: 4px solid #000;
+        
     }
     .vs-navbar.navbar-skelton{
         border-bottom: 2px solid #000;
@@ -3563,9 +3584,6 @@ export default {
     }
 }
 @media screen and (max-width: 400px){
-    .navbar-floating .router-content{
-        margin-top: 30px;
-    }
     #tradePage .chartBox {
         height: calc(var(--vh, 1vh)*100 - 418px);
     }
@@ -3623,13 +3641,13 @@ export default {
     color: #00cebe !important;
 }
 .color-green {
-    color: #23c15f !important;
+    color: #31baa0 !important;
 }
 .color-red{
     color: #ee4b60 !important;
 }
 .bg-green{
-    background: #23c15f !important;
+    background: #31baa0 !important;
 }
 .bg-red{
     background: #ee4b60 !important;
@@ -3643,8 +3661,8 @@ export default {
 }
 
 .betInput input{
-    background: #1d233b !important;
-    color: #fff;
+    background: #ffffff !important ;
+    color: #000;
 }
 
 .seconds-set { float: right; }
@@ -3657,12 +3675,6 @@ export default {
     margin-left: -17px;
     width: 45px;
     margin-top: -5px;
-}
-
-.display-remain-time {
-  font-size: 14px;
-  color: #82868b;
-  /*position: relative;top: 14px;*/
 }
 
 .w-18{
@@ -3746,7 +3758,7 @@ export default {
 }
 /* Custom color manko */
 .plotlineChart span {
-    background-color: #fedd3c !important;
+    background-color: #34d1d6!important;
     color: #060017 !important;
     display: inline-block;
     margin-top: 2px;
@@ -3764,7 +3776,7 @@ export default {
 }
 
 .c-desktop .profitValue {
-    color: rgb(35, 193, 95) !important;
+    color: rgb(49, 186, 160) !important;
     font-weight: 700 !important;
 }
 
@@ -3812,5 +3824,73 @@ export default {
 
 .vs-tabs--content {
     padding: 5px 0 0 !important;
+}
+.fix-dollar .icon-dollar-sign {
+    color: #000 !important;
+}
+
+.btn-minus-plus {
+    background-color: #1c223a;
+
+    .vs-button {
+        border: none !important;
+    }
+}
+
+.display-remain-time {
+    font-size: 16px;
+    color: #fff;
+}
+
+.c-desktop .profitPercent .color-green, .profitPercent.color-light-blue {
+    color: #31baa0 !important;
+}
+
+.fix-dollar .vs-input--input.hasIcon {
+    padding-left: 2rem !important;
+}
+
+.text-timeDown {
+    color: #8383a1;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    margin-top: 5px;
+}
+.btn-buy-sell{
+    padding-top: 5px !important;
+    height: 60px !important;
+    border-radius: 10px;
+    box-shadow: none;
+}
+.btn-buy-sell.disabled {
+    background-color: #8b8d96;
+    span {
+        color: #fff;
+    }
+}
+.highcharts-plot-background {
+    background: url('https://didi3.biz/img/world_map.6aaf3347.svg');
+}
+.fix-dollar .icon-dollar-sign:before {
+    content: '$';
+    font-weight: 500;
+    font-family: Sarabun,sans-serif!important;
+}
+@media (max-width: 768px) {
+    .fix-list-mobile {
+        display: flex;
+        justify-content: space-between;     
+        margin: 0 !important;
+        width: 100%;   
+    }
+}
+
+@media (min-width: 1200px) {
+    .fix-list-mobile {
+        width: 900px;
+        margin: 0 auto;
+        justify-content: space-around;
+    }
 }
 </style>

@@ -83,6 +83,7 @@ export default new Vuex.Store({
     themePrimaryColor       : themeConfig.primary, // color
     isOpenSideBar: false,
     isRenderdTradeIndex: false,
+    isOpenQuickDeposit: false,
   },
   mutations: {
      // ////////////////////////////////////////////
@@ -132,6 +133,10 @@ export default new Vuex.Store({
       state.AppActiveUser = val
     },
 
+    SET_QUICK_DEPOSIT(state, val) {
+      state.isOpenQuickDeposit = val
+    },
+
   },
   actions: {
     setToken ({commit}, token) {
@@ -146,6 +151,9 @@ export default new Vuex.Store({
 
     setInfoUser({commit}, list){
       commit('SET_INFO_USDER', list)
+    },
+    setQuickDeposit({commit}, data){
+      commit('SET_QUICK_DEPOSIT', data)
     }
   }
 })
