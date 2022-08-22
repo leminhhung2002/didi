@@ -375,7 +375,7 @@
 
                 <div class="lg:relative mb-5 mt-10">
                     <div class="h-6"></div>
-                    <vs-button @click="BetBuySell('buy')" :disabled="!isBet" class="w-full h-12 font-bold mb-3 btn-buy-sell" color="success" type="relief" :class="{'disabled': !isBet}">
+                    <vs-button @click="BetBuySell('buy')" :disabled="!isBet" class="w-full h-12 font-bold mb-3 btn-buy-sell btn-buy" color="success" type="relief" :class="{'disabled': !isBet}">
                     MUA
                         <feather-icon style="top: 5px;" icon="TrendingUpIcon" svgClasses="w-6 h-5"></feather-icon>
                     </vs-button>
@@ -386,7 +386,7 @@
                         </a>
                     </div>
                     <div class="h-4"></div>
-                    <vs-button @click="BetBuySell('sell')" :disabled="!isBet" class="w-full h-12 font-bold btn-buy-sell" color="danger" type="relief" :class="{'disabled': !isBet}">
+                    <vs-button @click="BetBuySell('sell')" :disabled="!isBet" class="w-full h-12 font-bold btn-buy-sell btn-sell" color="danger" type="relief" :class="{'disabled': !isBet}">
                     BÁN
                         <feather-icon style="top: 5px;" icon="TrendingDownIcon" svgClasses="w-6 h-5"></feather-icon>
                     </vs-button>
@@ -427,7 +427,7 @@
                 </div>
                 <div class="relative mb-5 mt-3">
                     <div style="display: flex; align-items: center;">
-                        <vs-button style="flex-grow: 1" size="large" @click="BetBuySell('sell')" :disabled="!isBet" class="font-bold btn-buy-sell" color="danger" type="relief" :class="{'disabled': !isBet}">
+                        <vs-button style="flex-grow: 1" size="large" @click="BetBuySell('sell')" :disabled="!isBet" class="font-bold btn-buy-sell btn-sell" color="danger" type="relief" :class="{'disabled': !isBet}">
                         BÁN
                             <feather-icon style="top: 5px;" icon="TrendingDownIcon" svgClasses="w-6 h-5"></feather-icon>
                         </vs-button>
@@ -435,7 +435,7 @@
                             <div>{{ textTimeDown }}</div>
                             <div class="display-remain-time timer_counter second">{{ seconDown }}</div>
                         </vs-button>
-                        <vs-button style="flex-grow: 1" size="large" @click="BetBuySell('buy')" :disabled="!isBet" class="font-bold btn-buy-sell" color="success" type="relief" :class="{'disabled': !isBet}">
+                        <vs-button style="flex-grow: 1" size="large" @click="BetBuySell('buy')" :disabled="!isBet" class="font-bold btn-buy-sell btn-buy" color="success" type="relief" :class="{'disabled': !isBet}">
                         MUA
                             <feather-icon style="top: 5px;" icon="TrendingUpIcon" svgClasses="w-6 h-5"></feather-icon>
                         </vs-button>
@@ -3494,7 +3494,7 @@ export default {
 }
 
 
-@media screen and (min-width: 768.98px) {
+@media screen and (min-width: 992px) {
 
     #tradePage, .rightBar{
         height: calc(100vh - 77px);
@@ -3863,6 +3863,14 @@ export default {
     border-radius: 10px;
     box-shadow: none;
 }
+.btn-buy {
+    background-color: #31baa0;
+}
+
+.btn-sell {
+    background-color: #fc5f5f;
+}
+
 .btn-buy-sell.disabled {
     background-color: #8b8d96;
     span {
@@ -3892,5 +3900,8 @@ export default {
         margin: 0 auto;
         justify-content: space-around;
     }
+}
+.vs-progress--foreground {
+    background: #31baa0 !important;
 }
 </style>
