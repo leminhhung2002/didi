@@ -32,7 +32,7 @@
                                 
                                 <div>
                                     <router-link to="/forgot-password" class="mb-5 inline-block float-right cursor-pointer">Quên mật khẩu?</router-link>
-                                    <vs-button color="success" class="w-full" type="filled" :disabled="!disabledLogin" @click="loginForm">Đăng nhập</vs-button>
+                                    <vs-button color="success" class="w-full btn-login" type="filled" :disabled="!disabledLogin" @click="loginForm">Đăng nhập</vs-button>
                                 </div>
                                 
                             </div>
@@ -1081,5 +1081,9 @@ a{
 
 .pagle .vs-sidebar{
     max-width: 428px !important;
+}
+
+.btn-login {
+  background-color: #34d1d6 !important;
 }
 </style>

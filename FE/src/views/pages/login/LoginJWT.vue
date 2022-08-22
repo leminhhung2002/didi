@@ -31,7 +31,7 @@
     </div>
     <div class="flex flex-wrap justify-between mb-3">
       <!--<vs-button  type="border" @click="registerUser">Register</vs-button>-->
-      <vs-button :disabled="!validateForm" @click="loginJWT">Đăng nhập</vs-button>
+      <vs-button :disabled="!validateForm" @click="loginJWT" class="btn-login">Đăng nhập</vs-button>
     </div>
   </div>
 </template>
@@ -90,4 +90,8 @@ export default {
 }
 
 </script>
-
+<style scoped>
+.btn-login {
+  background-color: #34d1d6 !important;
+}
+</style>
