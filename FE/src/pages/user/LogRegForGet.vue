@@ -111,7 +111,7 @@
                                     <vs-input class="w-full" label="Mã giới thiệu / Mã khuyến mãi" placeholder="Điền Mã giới thiệu" v-model="codeRef"/>
                                 </div>
                                 <div>
-                                    <vs-button color="success" class="w-full" type="filled" @click="submitFormReg">Đăng ký</vs-button>
+                                    <vs-button color="success" class="w-full btn-register" type="filled" @click="submitFormReg">Đăng ký</vs-button>
                                 </div>
                                 
                             </div>
@@ -1084,6 +1084,9 @@ a{
 }
 
 .btn-login {
+  background-color: #34d1d6 !important;
+}
+.btn-register {
   background-color: #34d1d6 !important;
 }
 </style>
